@@ -1,0 +1,5 @@
+Todo
+- i have to put the other vectors in the div
+- fix the button of the page to be uniform
+- change the glowbutton for home
+- change freqyently asked questions
