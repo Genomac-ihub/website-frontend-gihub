@@ -23,7 +23,7 @@ import Accordion from '../components/Accordion';
 import image from "../assets/image/image.svg"
 import grid from "../assets/image/hero-grid.DF71ygke.svg"
 import useHandleModal from '../zustard/useHandleModal';
-import atom from "../assets/image/Atom.svg"
+import atom from "../assets/image/atom.svg"
 import bulb from "../assets/image/bulb.svg"
 import gym from "../assets/image/gym.svg"
 
