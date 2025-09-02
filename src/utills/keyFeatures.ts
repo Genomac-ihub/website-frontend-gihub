@@ -1,9 +1,9 @@
-import cellTower from './src/assets/cellTower.png' 
-import browsers from './src/assets/browsers.png' 
-import chemicalFlask from './src/assets/chemical_flask.png' 
-import cubeFocus from './src/assets/cubefocus.png' 
-import kanban from './src/assets/kanban.png' 
-import usersFour from './src/assets/users_four.png' 
+import cellTower from '../assets/cellTower.png' 
+import browsers from '../assets/browsers.png' 
+import chemicalFlask from '../assets/chemical_flask.png' 
+import cubeFocus from '../assets/cubefocus.png' 
+import kanban from '../assets/kanban.png' 
+import usersFour from '../assets/users_four.png' 
 
 export const keyFeatures = [
     {
