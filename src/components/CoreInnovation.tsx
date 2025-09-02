@@ -2,7 +2,7 @@
 import dna from "../assets/image/dna.svg"
 import dna2 from "../assets/image/dna2.svg"
 import bio from "../assets/image/bio.svg"
-import atom from "../assets/image/Atom.svg"
+import atom from "../assets/image/atom.svg"
 import avocardo from "../assets/image/Avocado.svg"
 const CoreInnovativeAreas = () => {
   const areas = [
