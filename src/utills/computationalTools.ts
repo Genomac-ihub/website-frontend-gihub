@@ -13,8 +13,14 @@ import snakemake from './src/assets/snakemake.png'
 import flask from './src/assets/flask.webp'
 import rest from './src/assets/rest.jpeg'
 
+// define the type for one tool
+type ComputationalTool = {
+  name: string;
+  image: string; // or StaticImageData if using Next.js image imports
+};
 
-export const computationalTools = [
+// then type the array
+export const computationalTools: ComputationalTool[] = [
   {
     name: "Python/Linux",
     image: python,
@@ -71,4 +77,4 @@ export const computationalTools = [
     name: "REST APIs",
     image: rest,
   },
-  ]
+];

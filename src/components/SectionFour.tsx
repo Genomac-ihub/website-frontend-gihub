@@ -1,6 +1,6 @@
 import React from 'react'
 import arrow from '../assets/arrow_right.png'
-import { computationalTools } from '../../computationalTools'
+import { computationalTools } from '../utills/computationalTools'
 
 const SectionFour = () => {
 
