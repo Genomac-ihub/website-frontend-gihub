@@ -3,8 +3,11 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import useHandleModal from "../zustard/useHandleModal";
 import { useLocation } from "react-router-dom";
-const GlowButton = ({ desc }) => {
-     const location= useLocation().pathname
+type GlowButtonProps = {
+    desc: string;
+};
+const GlowButton = ({ desc }: GlowButtonProps) => {
+    const location = useLocation().pathname
 
     return (
         <Link to="/event" className="z-0 relative inline-block cursor-pointer">
@@ -34,7 +37,7 @@ const GlowButton = ({ desc }) => {
                 <h2 className="text-[.6rem] sm:text-[.8rem] md:text-[.8rem]  font-bold leading-snug text-gray-900">
                     {desc}
                 </h2>
-                { location != "/event" &&  <ArrowRight size={20} className="text-[#ff7700]" />}
+                {location != "/event" && <ArrowRight size={20} className="text-[#ff7700]" />}
             </div>
 
             {/* Permanent glow around the entire button */}
