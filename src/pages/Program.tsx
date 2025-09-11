@@ -3,9 +3,9 @@ import eclipse from "../assets/gihub-eclipse.png"
 import iconlove from "../assets/image/Icon-love.png"
 import blueIcon from "../assets/purple-heart.png"
 import deepBlueIcon from "../assets/deepBlueIcon.png"
-import PurpleIcon from "../assets/PurpleIcon.png"
-import PinkIcon from "../assets/PinkIcon.png"
-import { Check, Twitter } from 'lucide-react';
+import PurpleIcon from "../assets/purpleIcon.png"
+import PinkIcon from "../assets/pinkIcon.png"
+import { Check} from 'lucide-react';
 import instructor from "../assets/image/guy.png"
 
 const Program = () => {
