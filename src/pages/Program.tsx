@@ -5,8 +5,10 @@ import blueIcon from "../assets/purple-heart.png"
 import deepBlueIcon from "../assets/deepBlueIcon.png"
 import PurpleIcon from "../assets/purpleIcon.png"
 import PinkIcon from "../assets/pinkIcon.png"
-import { Check} from 'lucide-react';
+import { Check } from 'lucide-react';
 import instructor from "../assets/image/guy.png"
+import bio from "../assets/bio-dp.png"
+import GlowButton from "../components/GlowButton"
 
 const Program = () => {
 
@@ -75,10 +77,9 @@ const Program = () => {
     ]
     return (
         <div>
-            <section className="flex relative flex-col md:items-center md:justify-center mt-30  md:mt-40 lg:mt-19 overflow-hidden ">
-                <a href="https://forms.gle/KPMSZMs1h27fkoDR9" className=" gap-5 mx-auto bg-gradient-to-br opacity-80 bg-[#FF770014] text-black  py-2 cursor-pointer px-4 sm:px-8 rounded-full shadow-md flex items-center text-[.8rem]">
-                    🔥 Cohort 1 filled 3x faster than expected
-                </a>
+            <section className="flex relative flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
+                <GlowButton desc="Cohort 1 filled 3x faster than expected" />
+
                 <div className="px-4 md:px-10 ">
                     <div
                         className="text-[calc(1.5rem+2vw)]  mx-auto mt-6 lg:mt-12 z-10 text-center leading-[calc(2rem+2vw)] text-[#0D0D0D] max-w-3xl font-bold"
@@ -100,7 +101,11 @@ const Program = () => {
                     </div>
                 </div>
                 <div className="mt-20">
-                    <img src={rafiki} alt="" />
+                    <img
+                        src={bio}
+                        alt="Profile"
+                        className="mx-auto max-w-2xl w-full h-auto rounded-3xl shadow-lg object-cover"
+                    />
                 </div>
             </section>
 
@@ -110,13 +115,13 @@ const Program = () => {
                         <h2>All what you need to know </h2>
                         <h2>(Course Overview)</h2>
                     </div>
-                    <div className="flex flex-col text-center items-start px-2">
+                    <div className="flex flex-col max-md:text-center items-start px-2">
                         <div className="mt-10 text-[#404040] text-[.8rem] md:text-base md:leading-6 space-y-3 md:w-[90%]">
                             <h2>Learn how to build real-world bioinformatics tools using Python and Streamlit without needing advanced coding experience. This short-term course takes you from zero to launching your first simple app for genomics, biomedical data analysis, or molecular diagnostics.
                             </h2>
                         </div>
                         <div className="border-[1px] border-gray-200 w-[100%] mt-[30px] mb-[20px] "></div>
-                        <div className="text-[#404040] text-center md:w-[90%] text-[.8rem] md:text-base md:leading-6 space-y-3 ">
+                        <div className="text-[#404040] max-md:text-center md:w-[90%] text-[.8rem] md:text-base md:leading-6 space-y-3 ">
                             <h2>A beginner-friendly journey that shows you how to design, code, and deploy simple bioinformatics apps for genomics, biomedical data, and diagnostics, all using Python and Streamlit..</h2>
                         </div>
                         <div className="mt-[30px] md:mt-[60px] max-md:mx-auto">

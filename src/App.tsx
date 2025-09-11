@@ -13,6 +13,7 @@ import Courses from './pages/Courses';
 import Landing from './pages/Landing';
 import Form from './pages/Form';
 import Program from './pages/Program';
+import EventStart from './components/EventStart';
 
 const router = createBrowserRouter([
   {
@@ -36,12 +37,12 @@ const router = createBrowserRouter([
             path: "/event",
             element: <Program />
           },
-          // {
-          //   path: "/event",
-          //   element: <Landing
-          //   //  darkMode={darkMode} switchTheme={switchTheme}
-          //   />
-          // },
+          {
+            path: "/event",
+            element: <Landing
+            //  darkMode={darkMode} switchTheme={switchTheme}
+            />
+          },
         ]
       },
       {

@@ -44,8 +44,8 @@ const Home = () => {
   return (
     <div className=''>
 
-      <section className="flex relative flex-col items-center justify-center mt-40 md:mt-10 px-4 md:px-10">
-        <GlowButton />
+      <section className="flex relative flex-col items-center justify-center mt-40  md:mt-50 lg:mt-10 px-4 md:px-10">
+        <GlowButton desc={"Build your first Bioinformatics app in Python & Streamlit"} />
         <img src={image} className='absolute hidden md:-top-60' />
         <img src={grid} className='absolute -top-60  opacity-6 -z-1' />
 

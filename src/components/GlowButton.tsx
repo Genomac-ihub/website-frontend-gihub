@@ -2,7 +2,9 @@ import { ArrowRight, Verify } from "iconsax-reactjs";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import useHandleModal from "../zustard/useHandleModal";
-const GlowButton = () => {
+import { useLocation } from "react-router-dom";
+const GlowButton = ({ desc }) => {
+     const location= useLocation().pathname
 
     return (
         <Link to="/event" className="z-0 relative inline-block cursor-pointer">
@@ -28,8 +30,11 @@ const GlowButton = () => {
 
             <div className="relative gap-2 border-[1px] text-black border-[#FF7700] text-sm sm:text-[.7rem] md:text-[0.813rem] bg-gray-100  px-3 py-2 flex items-center font-medium capitalize rounded-[2rem] ">
                 <Verify size="17" className="" />
-                International Bio-coding 2.0
-                <ArrowRight size={20} className="text-[#ff7700]" />
+                {/* International Bio-coding 2.0 */}
+                <h2 className="text-[.6rem] sm:text-[.8rem] md:text-[.8rem]  font-bold leading-snug text-gray-900">
+                    {desc}
+                </h2>
+                { location != "/event" &&  <ArrowRight size={20} className="text-[#ff7700]" />}
             </div>
 
             {/* Permanent glow around the entire button */}

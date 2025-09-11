@@ -35,8 +35,7 @@ const About = () => {
     <>
 
       <section className="flex relative flex-col items-center justify-center mt-40 md:mt-10 px-4 md:px-10">
-        <GlowButton />
-
+         <GlowButton desc={"International Bio-coding 2.0"} />
         <div className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] mx-auto mt-8 font-semibold z-10 leading-snug md:leading-tight lg:leading-[4.5rem] max-w-5xl">
           Investing in innovation that transforms the world.
         </div>
