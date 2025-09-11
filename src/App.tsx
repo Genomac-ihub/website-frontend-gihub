@@ -12,6 +12,7 @@ import WebinarLandingPage from './components/WebinarLandingPage';
 import Courses from './pages/Courses';
 import Landing from './pages/Landing';
 import Form from './pages/Form';
+import Program from './pages/Program';
 
 const router = createBrowserRouter([
   {
@@ -33,10 +34,14 @@ const router = createBrowserRouter([
           },
           {
             path: "/event",
-            element: <Landing
-            //  darkMode={darkMode} switchTheme={switchTheme}
-            />
+            element: <Program />
           },
+          // {
+          //   path: "/event",
+          //   element: <Landing
+          //   //  darkMode={darkMode} switchTheme={switchTheme}
+          //   />
+          // },
         ]
       },
       {

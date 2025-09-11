@@ -7,7 +7,7 @@ import useHandleModal from '../zustard/useHandleModal';
 import useLogout from '../tanstack/useLogout';
 
 export default function Navbar() {
-   
+
     let hoverTimeout: ReturnType<typeof setTimeout> | null = null
 
     const handleMouseEnter = () => {
