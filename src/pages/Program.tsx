@@ -106,7 +106,7 @@ const Program = () => {
                     <img
                         src={bio}
                         alt="Profile"
-                        className="mx-auto max-w-2xl w-full h-auto rounded-3xl shadow-lg object-cover"
+                        className="mx-auto w-[90%] max-w-2xl sm:w-full h-auto rounded-3xl shadow-lg object-cover"
                     />
                 </div>
             </section>
