@@ -10,7 +10,9 @@ import instructor from "../assets/image/guy.png"
 import bio from "../assets/bio-dp.png"
 import GlowButton from "../components/GlowButton"
 import { Link } from "react-router-dom"
-
+import exlipse from "../assets/Elipse.png"
+import ball from "../assets/Ellipse 176.png"
+import ball2 from "../assets/Ellipse 177.png"
 const Program = () => {
 
     const courseData = [
@@ -78,8 +80,9 @@ const Program = () => {
     ]
     return (
         <div>
-            <section className="flex relative flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
-
+            <img src={ball} className="absolute top-0  z-[-10] " />
+            <img src={ball2} className="absolute top-0  z-[-10] -right-10 rounded-full" />
+            <section className="flex relative  flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
                 <GlowButton desc="Cohort 1 filled 3x faster than expected" />
 
                 <div className="px-4 md:px-10 ">
@@ -108,7 +111,9 @@ const Program = () => {
                         alt="Profile"
                         className="mx-auto w-[90%] max-w-2xl sm:w-full h-auto rounded-3xl shadow-lg object-cover"
                     />
+
                 </div>
+                <img src={exlipse} className="absolute bottom-0 z-[-10] " />
             </section>
 
             <section className="flex max-w-7xl max-sm:flex-col px-2 gap-10 justify-around items-center mx-auto mt-[100px] md:mt-[200px]">
