@@ -178,7 +178,7 @@ const Program = () => {
 
                 <div className="flex flex-col items-center mt-[20px] justify-center  w-full max-w-[76rem] px-8 py-6 md:py-10 lg:py-14 h-auto md:h-[23.75rem] rounded-md bg-gradient-to-r from-[#0DFFB0] to-[#F5E200] text-center space-y-4 sm:space-y-6">
                     <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
-                        Total Bonus Value:<span className="text-[#15B097]">{" "}$1,500</span>
+                        Total Bonus Value:<span className="text-[#15B097]">{" "}$1,000</span>
                     </h1>
 
                     <h2 className="text-base sm:text-lg md:text-xl font-semibold opacity-50">
