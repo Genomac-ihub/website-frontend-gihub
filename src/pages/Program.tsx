@@ -280,7 +280,7 @@ const Program = () => {
                                         <i className="bi bi-twitter-x text-gray-700"></i>
                                     </a>
                                     <a
-                                        href="#"
+                                        href="https://www.linkedin.com/in/terkuma-saaondo-2201521a0"
                                         className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
                                         aria-label="LinkedIn"
                                     >

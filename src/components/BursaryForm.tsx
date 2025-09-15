@@ -144,7 +144,7 @@ const BursaryForm = () => {
         // Using navigate for safer redirect
         setTimeout(() => {
           navigate("/success"); // You may want to create a success page or use the actual WhatsApp URL
-          window.open("https://chat.whatsapp.com/KTewtF2OybCAoLjHH7wfmH", "_blank");
+          window.open("https://chat.whatsapp.com/BRv9WFnVjDIC4Np6dkKPlF?mode=ac_t", "_blank");
         }, 1000);
       },
       onError: (err: any) => {
