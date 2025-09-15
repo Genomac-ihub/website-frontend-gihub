@@ -14,6 +14,7 @@ import Landing from './pages/Landing';
 import Form from './pages/Form';
 import Program from './pages/Program';
 import EventStart from './components/EventStart';
+import BursaryForm from './components/BursaryForm';
 
 const router = createBrowserRouter([
   {
@@ -50,8 +51,8 @@ const router = createBrowserRouter([
         element: <About />
       },
       {
-        path: "/form",
-        element: <Form />
+        path: "/bursary-form",
+        element: <BursaryForm />
       },
       {
         path: "*",

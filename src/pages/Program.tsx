@@ -9,6 +9,7 @@ import { Check } from 'lucide-react';
 import instructor from "../assets/image/guy.png"
 import bio from "../assets/bio-dp.png"
 import GlowButton from "../components/GlowButton"
+import { Link } from "react-router-dom"
 
 const Program = () => {
 
@@ -78,6 +79,7 @@ const Program = () => {
     return (
         <div>
             <section className="flex relative flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
+                
                 <GlowButton desc="Cohort 1 filled 3x faster than expected" />
 
                 <div className="px-4 md:px-10 ">
@@ -92,11 +94,11 @@ const Program = () => {
 
                     <div className="flex sm:flex-row gap-3 sm:gap-4 md:justify-center items-center w-full px-2 sm:px-0 mt-[40px]">
                         {/* Get Started */}
-                        <a
-                            href="https://forms.gle/KPMSZMs1h27fkoDR9"
+                        <Link
+                            to="/bursary-form"
                             className="gap-3 mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500  py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-white shadow-md flex items-center text-[.9rem]">
                             90% Bursary Waiver Available
-                        </a>
+                        </Link>
 
                     </div>
                 </div>
@@ -126,9 +128,9 @@ const Program = () => {
                         </div>
                         <div className="mt-[30px] md:mt-[60px] max-md:mx-auto">
                             {/* Get Started */}
-                            <a href="https://forms.gle/KPMSZMs1h27fkoDR9" className="gap-3 mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500  py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-white shadow-md flex items-center text-[.9rem]">
+                            <Link to="/bursary-form" className="gap-3 mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500  py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-white shadow-md flex items-center text-[.9rem]">
                                 Get started
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -188,9 +190,9 @@ const Program = () => {
                         <h2 className="text-[#15B097] text-[2rem] font-bold">$100</h2>
                     </div>
 
-                    <a href="https://forms.gle/KPMSZMs1h27fkoDR9" className="gap-3 cursor-pointer mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 py-2 px-4 rounded-full text-white shadow-md flex items-center text-sm sm:text-base font-medium">
+                    <Link to="/bursary-form" className="gap-3 cursor-pointer mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 py-2 px-4 rounded-full text-white shadow-md flex items-center text-sm sm:text-base font-medium">
                         Yes I want it before door close
-                    </a>
+                    </Link>
 
                     <div className="text-sm sm:text-base opacity-60 font-medium">
                         90% discount available to 30 persons
@@ -214,9 +216,9 @@ const Program = () => {
                                     Certificate of Participation and certificate of innovation (for those
                                     who complete and present a working tool).
                                 </p>
-                                <a href="https://forms.gle/KPMSZMs1h27fkoDR9" className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-full transition-colors">
+                                <Link to="/bursary-form" className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-full transition-colors">
                                     Apply for 90% Bursary Waiver
-                                </a>
+                                </Link>
                             </div>
 
                             <div className="lg:w-80">
