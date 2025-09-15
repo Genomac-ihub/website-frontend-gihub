@@ -79,7 +79,7 @@ const Program = () => {
     return (
         <div>
             <section className="flex relative flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
-                
+
                 <GlowButton desc="Cohort 1 filled 3x faster than expected" />
 
                 <div className="px-4 md:px-10 ">
@@ -88,8 +88,8 @@ const Program = () => {
                     >
                         Build your first Bioinformatics App with Python & Streamlit.
                     </div>
-                    <p className="text-center md:mx-auto z-0 mt-5 md:mt-5 sm:text-base text-[.8rem] text-[#404040] font-normal max-w-xl px-2">
-                        Presenting Academy, the tech school of the future. We teach you the right skills to be prepared for tomorrow..
+                    <p className="text-center md:mx-auto z-0 mt-5 md:mt-5 sm:text-base text-[.8rem] text-[#404040] font-normal max-w-xl px-2 opacity-70">
+                        From Data to Discovery: Create Your Own Bioinformatics Tools Without Complexity, Using Python and Streamlit!
                     </p>
 
                     <div className="flex sm:flex-row gap-3 sm:gap-4 md:justify-center items-center w-full px-2 sm:px-0 mt-[40px]">
@@ -210,7 +210,7 @@ const Program = () => {
                                     90% Bursary Waiver available to 30 person
                                 </p>
                                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                                    Become a certified Bioinformatics
+                                    Become a Certified Bioinformatics
                                 </h1>
                                 <p className="text-gray-600 mb-6">
                                     Certificate of Participation and certificate of innovation (for those
