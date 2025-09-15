@@ -318,7 +318,7 @@ const BursaryForm = () => {
                 </label>
                 <input name="hoursPerWeek" value={applicantForm.hoursPerWeek}
                   onChange={handleInputChange} className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.email ? "border-red-500" : ""
-                    }`} placeholder="e.g 3 hrs " />
+                    }`} placeholder="e.g 3 hours " />
                 {/* <select
                   name="hoursPerWeek"
                   value={applicantForm.hoursPerWeek}
