@@ -79,9 +79,9 @@ const Program = () => {
         }
     ]
     return (
-        <div>
-            <img src={ball} className="absolute top-0  z-[-10] " />
-            <img src={ball2} className="absolute top-0  z-[-10] -right-10 rounded-full" />
+        <div className="">
+            <img src={ball} className="fixed top-0  z-[-10] " />
+            <img src={ball2} className="fixed top-0  z-[-10] -right-10 rounded-full" />
             <section className="flex relative  flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
                 <GlowButton desc="Cohort 1 filled 3x faster than expected" />
 
