@@ -100,7 +100,7 @@ const Program = () => {
                         <Link
                             to="/bursary-form"
                             className="gap-3 mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500  py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-white shadow-md flex items-center text-[.9rem]">
-                            90% Bursary Waiver Available
+                            92% Bursary Waiver Available
                         </Link>
 
                     </div>
@@ -192,7 +192,7 @@ const Program = () => {
 
                     <div className="flex flex-col sm:flex-row sm:justify-between text-lg sm:text-xl font-medium gap-1 w-[20%]">
                         <h2 className="text-[2rem] line-through">$1000</h2>
-                        <h2 className="text-[#15B097] text-[2rem] font-bold">$100</h2>
+                        <h2 className="text-[#15B097] text-[2rem] font-bold">$80</h2>
                     </div>
 
                     <Link to="/bursary-form" className="gap-3 cursor-pointer mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 py-2 px-4 rounded-full text-white shadow-md flex items-center text-sm sm:text-base font-medium">
@@ -200,7 +200,7 @@ const Program = () => {
                     </Link>
 
                     <div className="text-sm sm:text-base opacity-60 font-medium">
-                        90% discount available to 30 persons
+                        92% discount available to 30 persons
                     </div>
                 </div>
             </section>
@@ -212,7 +212,7 @@ const Program = () => {
                         <div className="flex flex-col lg:flex-row gap-40 lg:items-center lg:justify-between">
                             <div className="flex-1">
                                 <p className="text-[#FF7700] font-medium mb-3">
-                                    90% Bursary Waiver available for 30 person
+                                    92% Bursary Waiver available for 30 person
                                 </p>
                                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                                     Become a Certified Bioinformatics
@@ -222,7 +222,7 @@ const Program = () => {
                                     who complete and present a working tool).
                                 </p>
                                 <Link to="/bursary-form" className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-full transition-colors">
-                                    Apply for 90% Bursary Waiver
+                                    Apply for 92% Bursary Waiver
                                 </Link>
                             </div>
 

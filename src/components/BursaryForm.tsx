@@ -11,7 +11,6 @@ interface FormData {
   email: string;
   country: string;
   educationBackground: string;
-  motivationCommitment: string;
   scholarshipReason: string;
   canCommit: string;
   hoursPerWeek: string;
@@ -31,7 +30,6 @@ const BursaryForm = () => {
     email: "",
     country: "",
     educationBackground: "",
-    motivationCommitment: "",
     scholarshipReason: "",
     canCommit: "",
     hoursPerWeek: "",
@@ -67,19 +65,7 @@ const BursaryForm = () => {
   ) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
-    
-    if (name === "motivationCommitment") {
-      // Split into words and limit to 300 words
-      const words = value.trim().split(/\s+/);
-      if (words.length > 300) {
-        const limitedText = words.slice(0, 300).join(" ");
-        setApplicantForm((prev) => ({
-          ...prev,
-          [name]: limitedText
-        }));
-        return;
-      }
-    }
+
     
     setApplicantForm((prev) => ({
       ...prev,
@@ -94,17 +80,6 @@ const BursaryForm = () => {
     if (!applicantForm.lastName) errors.lastName = "Last Name is required";
     if (!applicantForm.email) errors.email = "Email is required";
     if (!applicantForm.country) errors.country = "Country is required";
-    if (!applicantForm.motivationCommitment)
-      errors.motivationCommitment = "Motivation is required";
-    
-    // Add word count validation for motivationCommitment
-    const wordCount = applicantForm.motivationCommitment.trim().split(/\s+/).filter(Boolean).length;
-    if (wordCount < 250) {
-      errors.motivationCommitment = `Your response is too short (${wordCount} words). Please write at least 250 words.`;
-    } else if (wordCount > 300) {
-      errors.motivationCommitment = `Your response is too long (${wordCount} words). Please limit to 300 words.`;
-    }
-    
     if (!applicantForm.canCommit) errors.canCommit = "Commitment selection is required";
     if (!applicantForm.scholarshipAwareness)
       errors.scholarshipAwareness = "Scholarship awareness confirmation is required";
@@ -139,7 +114,6 @@ const BursaryForm = () => {
       email: applicantForm.email,
       country: applicantForm.country,
       educationBackground: applicantForm.educationBackground,
-      motivationCommitment: applicantForm.motivationCommitment,
       scholarshipReason: applicantForm.scholarshipReason,
       canCommit: applicantForm.canCommit,
       hoursPerWeek: applicantForm.hoursPerWeek,
@@ -156,7 +130,6 @@ const BursaryForm = () => {
           email: "",
           country: "",
           educationBackground: "",
-          motivationCommitment: "",
           scholarshipReason: "",
           canCommit: "",
           hoursPerWeek: "",
@@ -180,7 +153,7 @@ const BursaryForm = () => {
   };
 
   return (
-    <div className="md:py-20 md:px-24 p-10 dark:bg-[#040404] dark:text-white transition duration-400">
+    <div className="md:py-20 md:px-24 p-6 dark:bg-[#040404] dark:text-white transition duration-400">
       <h2 className="font-semibold md:text-4xl text-2xl text-center mb-8">
         BURSARY WAIVER APPLICATION
       </h2>
@@ -281,28 +254,8 @@ const BursaryForm = () => {
 
           {/* Motivation & Commitment */}
           <div className="flex flex-col gap-8">
-            <h3 className="font-medium text-2xl text-[#FF7700]">Motivation</h3>
+            <h3 className="font-medium text-2xl text-[#FF7700]">Commitment</h3>
             <div className="flex flex-col gap-5">
-              <div className="flex flex-col gap-2">
-                <label className="text-lg font-medium">
-                  Tell us why this interests you (in 250–300 words).*
-                </label>
-                <p className="text-sm text-gray-500 mt-1">
-                  Word count: {applicantForm.motivationCommitment.trim().split(/\s+/).filter(Boolean).length}
-                </p>
-                <textarea
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm h-[350px] dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.motivationCommitment ? "border-red-500" : ""}`}
-                  name="motivationCommitment"
-                  value={applicantForm.motivationCommitment}
-                  onChange={handleInputChange}
-                  required
-                  maxLength={2100} // Assuming average word length of 6 characters (350 words * 6 chars)
-                  placeholder="Type here..."
-                />
-                {formErrors.motivationCommitment && (
-                  <p className="text-red-500 text-sm">{formErrors.motivationCommitment}</p>
-                )}
-              </div>
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">
                   Why do you think the scholarship should be awarded to you and
