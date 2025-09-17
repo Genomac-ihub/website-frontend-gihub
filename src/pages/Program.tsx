@@ -196,7 +196,7 @@ const Program = () => {
                     </div>
 
                     <Link to="/bursary-form" className="gap-3 cursor-pointer mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 py-2 px-4 rounded-full text-white shadow-md flex items-center text-sm sm:text-base font-medium">
-                        Yes I want it before door close
+                        Yes I want it before the door closes
                     </Link>
 
                     <div className="text-sm sm:text-base opacity-60 font-medium">
@@ -212,7 +212,7 @@ const Program = () => {
                         <div className="flex flex-col lg:flex-row gap-40 lg:items-center lg:justify-between">
                             <div className="flex-1">
                                 <p className="text-[#FF7700] font-medium mb-3">
-                                    90% Bursary Waiver available to 30 person
+                                    90% Bursary Waiver available for 30 person
                                 </p>
                                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                                     Become a Certified Bioinformatics
