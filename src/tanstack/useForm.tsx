@@ -8,7 +8,6 @@ interface FormData {
   email: string;
   country: string;
   educationBackground: string;
-  motivationCommitment: string;
   scholarshipReason: string;
   canCommit: string;
   hoursPerWeek: string;
