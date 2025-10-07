@@ -38,20 +38,20 @@ const AccordionEarn = () => {
     };
 
     return (
-        <div className=" bg-white text-black py-16 px-2 sm:px-6 lg:px-10">
+        <div className=" bg-white text-black py-16 px-2 sm:px-6 lg:px-10 mx-auto">
             <div className="flex flex-col md:flex-row gap-x-5">
                 {/* Header */}
                 <div className="text-center mb-10">
-                    <h1 className="text-4xl md:text-4xl text-left font-bold mb-4">
+                    <h1 className="text-4xl md:text-4xl md:text-left font-bold mb-4">
                         Frequently Asked Questions
                     </h1>
-                    <p className="text-gray-600 text-left max-w-xl mx-auto text-sm sm:text-xs">
+                    <p className="text-gray-600 md:text-left max-w-xl mx-auto text-sm sm:text-xs">
                         Can't able to find answers you're looking for? <br /> Reach out to our <Link to="#" className="text-blue-500 hover:underline" >customer support</Link> team.
                     </p>
                 </div>
 
                 {/* Accordion */}
-                <div className="space-y-3 w-full md:w-2xl ">
+                <div className="space-y-3">
                     {faqData.map((item, index) => (
                     <div
                         key={index}
