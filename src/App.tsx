@@ -13,8 +13,10 @@ import Courses from './pages/Courses';
 import Landing from './pages/Landing';
 import Form from './pages/Form';
 import Program from './pages/Program';
+import Event from './pages/Earn';
 import EventStart from './components/EventStart';
 import BursaryForm from './components/BursaryForm';
+import Earn from './pages/Earn';
 
 const router = createBrowserRouter([
   {
@@ -39,11 +41,15 @@ const router = createBrowserRouter([
             element: <Program />
           },
           {
+            path: '/program',
+            element: <Earn />
+          },
+          {
             path: "/event",
             element: <Landing
             //  darkMode={darkMode} switchTheme={switchTheme}
             />
-          },
+          }
         ]
       },
       {

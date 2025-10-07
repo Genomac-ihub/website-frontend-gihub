@@ -119,6 +119,7 @@ export default function Navbar() {
                                             <li><Link to={"/about"} className="transition hover:text-gray-500/75" onClick={closeMenu}>About</Link></li>
                                             <li><Link to={"/courses"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Courses</Link></li>
                                             <li><Link to={"/event"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Event</Link></li>
+                                            <li><Link to={"/program"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Program</Link></li>
                                         </ul>
                                     </nav>
                                 )
@@ -159,6 +160,7 @@ export default function Navbar() {
                                                     { link: "/about", type: "About", icon: "", color: "text-gray-700" },
                                                     { link: "/courses", type: "Courses", icon: "", color: "text-gray-500" },
                                                     { link: "/event", type: "events", icon: "", color: "text-gray-500" },
+                                                    { link: "/program", type: "Program", icon: "", color: "text-gray-500" },
                                                     { link: "", type: "Log out", icon: "", afunction: () => logout(), color: "text-red-500" },
                                                 ].map(({ link, type, icon, color, afunction }) => (
                                                     <Link
@@ -239,7 +241,8 @@ export default function Navbar() {
                                     { to: "/", label: "Home", icon: "🏠", desc: "Back to homepage" },
                                     { to: "/about", label: "About", icon: "ℹ️", desc: "Learn more about us" },
                                     { to: "/courses", label: "Courses", icon: "📚", desc: "Browse all courses" },
-                                    { to: "/event", label: "Event", icon: "📅", desc: "See upcoming events and workshops" }
+                                    { to: "/event", label: "Event", icon: "📅", desc: "See upcoming events and workshops" },
+                                    { to: "/program", label: "Program", icon: "🎓", desc: "Explore available programs" }
 
                                 ].map(({ to, label, icon, desc }, index) => (
                                     <li key={to} className={`transform transition-all duration-300 delay-${index * 100}`}>
