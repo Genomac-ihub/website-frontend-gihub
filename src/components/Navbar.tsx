@@ -114,7 +114,7 @@ export default function Navbar() {
                                     <h1>Hi {userData?.firstName}, {" "}G-IHUb welcomes you to <span className='text-orange-400'>Computational Biology</span></h1>
                                 ) : (
                                     <nav aria-label="Global">
-                                        <ul className="flex items-center gap-20 text-[1rem]">
+                                        <ul className="flex items-center gap-10 text-[1rem]">
                                             <li><Link to={"/"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Home</Link></li>
                                             <li><Link to={"/about"} className="transition hover:text-gray-500/75" onClick={closeMenu}>About</Link></li>
                                             <li><Link to={"/courses"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Courses</Link></li>
