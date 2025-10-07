@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 import exlipse from "../assets/Elipse.png";
 import rafiki from "../assets/rafiki.png";
 import Content from "../assets/Content.png";
+import grid from "../assets/image/hero-grid.DF71ygke.svg";
 import iconlove from "../assets/image/Icon-love.png";
+import image from "../assets/image/image.svg";
+import Accordion from "../components/AccordionEarn";
 
 const Earn = () => {
   const courseData = [
@@ -31,10 +34,11 @@ const Earn = () => {
   return (
     <>
       <img src={ball} className="fixed top-0  z-[-10] " />
-      <img
-        src={ball2}
-        className="fixed top-0  z-[-10] -right-10 rounded-full"
-      />
+      <img src={ball2} className="fixed top-0  z-[-10] -right-10 rounded-full" />
+      <img src={grid} className='absolute -top-60  opacity-6 -z-1' />
+      <img src={image} className='absolute hidden md:-top-60' />
+
+      
 
       <section className="flex relative  flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
         <GlowButton desc="🔥Get aid at least $25-$300 and above per project" />
@@ -148,6 +152,11 @@ const Earn = () => {
           ))}
         </div>
       </section>
+
+      {/* FAQs next... */}
+      
+      <Accordion />
+
     </>
   );
 };
