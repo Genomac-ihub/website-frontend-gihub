@@ -5,9 +5,11 @@ import useUserDetail from '../tanstack/useUserDetail';
 import { useLocation } from 'react-router-dom';
 import useHandleModal from '../zustard/useHandleModal';
 import useLogout from '../tanstack/useLogout';
+import MyLearningSidebar from './MyLearningSidebar';
 
+// export default function Navbar
 export default function Navbar() {
-
+    const [openNav, setOpenNav] = useState(false)
     let hoverTimeout: ReturnType<typeof setTimeout> | null = null
 
     const handleMouseEnter = () => {
@@ -88,42 +90,67 @@ export default function Navbar() {
         }
     }, [isOpen])
 
+    useEffect(() => {
+        const isDesktop = window.innerWidth >= 768;
+        if (isDesktop) {
+            document.body.style.marginLeft = openNav ? '18rem' : '0';
+        }
+        return () => {
+            if (isDesktop) document.body.style.marginLeft = '0';
+        };
+    }, [openNav]);
+
 
     return (
-        <>
-            <div ref={sentinelRef} className={`h-[1px] w-full ${pathname === "/my-learning" ? "bg-black" : "bg-white"}`}></div>
+        <div>
+            <div ref={sentinelRef} className={`h-[1px] w-full ${(pathname === "/my-learning" || pathname === "/earn") ? "bg-black" : ""}`}></div>
 
             <header
                 id="my-header"
                 ref={navbarRef}
-                className={`fixed  w-full  top-0 left-0 z-50 transition-all duration-300  ${pathname === "/my-learning" ? "bg-black  text-white border-b-[1px] border-b-neutral-500" : isScrolled ? "bg-white/80 backdrop-blur-md border-[1px] border-gray-200/50 shadow-lg" : "border-[1px] border-gray-200 bg-[#F9F7F7] shadow-3xs "}
+                className={`fixed border-2  w-full  top-0 left-0 z-50 transition-all duration-300  ${(pathname === "/my-learning" || pathname === "/earn") ? "text-black bg-black  border-b-neutral-500" : isScrolled ? "bg-white/80 backdrop-blur-md border-[1px] border-gray-200/50 shadow-lg" : "border-[1px] border-gray-200 bg-[#F9F7F7] shadow-3xs "}
         w-full lg:sticky lg:top-0 
-        ${isStuck ? 'lg:w-full lg:rounded-none shadow-md' : pathname !== "/my-learning" ? 'lg:w-[89%] lg:mx-auto lg:my-10 lg:rounded-3xl' : ""}`}
+        ${isStuck ? 'lg:w-full lg:rounded-none shadow-md' : (pathname !== "/my-learning" && pathname !== "/earn") ? 'lg:w-[89%] lg:mx-auto lg:my-10 lg:rounded-3xl' : ""}`}
             >
-                <div className={`mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 transition-all`}>
+                <div className={`mx-auto max-w-screen-xl px-4 sm:px-6  lg:px-8 ${pathname === "/my-learning" || pathname === "/earn" ? "" : "px-2"}`}>
                     <div className="flex h-16 items-center justify-between">
-                        <div className="md:flex md:items-center md:gap-12">
-                            <Link to={'/'} className="block text-white" onClick={closeMenu}>
-                                <span className="sr-only">Home</span>
+                        <div className={`relative md:flex md:items-center md:gap-12 ${(pathname === "/my-learning" || pathname === "/earn") ? " " : "text-black"}`}>
+                            <div onClick={() => {
+                                if (pathname === "/my-learning" || pathname === "/earn") {
+                                    setOpenNav((prev) => !prev);
+                                }
+                            }} className={` text-white ${(pathname === "/my-learning" || pathname === "/earn") && "flex justify-center text-black items-center"} gap-3 cursor-pointer`}>
+                                {(pathname === "/my-learning" || pathname === "/earn") && <i className="bi bi-list text-xl text-white"></i>}
+                                <span className='sr-only text-white'>Home</span>
                                 <img src={logo} alt="Logo" className="w-[4rem] md:w-[5rem]" />
-                            </Link>
+                            </div>
                         </div>
+                        {openNav && <MyLearningSidebar isOpen={openNav} onClose={() => setOpenNav(false)} user={userData} />}
                         <div className="hidden md:block ">
                             {
                                 pathname === "/my-learning" && userData?.tags === "computaional-biology" ? (
                                     <h1>Hi {userData?.firstName}, {" "}G-IHUb welcomes you to <span className='text-orange-400'>Computational Biology</span></h1>
                                 ) : (
                                     <nav aria-label="Global">
-                                        <ul className="flex items-center gap-20 text-[1rem]">
-                                            <li><Link to={"/"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Home</Link></li>
-                                            <li><Link to={"/about"} className="transition hover:text-gray-500/75" onClick={closeMenu}>About</Link></li>
-                                            <li><Link to={"/courses"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Courses</Link></li>
-                                            <li><Link to={"/event"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Event</Link></li>
-                                            <li><Link to={"/program"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Program</Link></li>
+                                        <ul className={`flex items-center gap-20 text-[1rem] ${(pathname === "/my-learning" || pathname === "/earn") ? "text-white" : "text-black"}`}>
+                                            <li>
+                                                <Link to="/" className="transition hover:text-gray-500/75" onClick={closeMenu}>Home</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/about" className="transition hover:text-gray-500/75" onClick={closeMenu}>About</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/courses" className="transition hover:text-gray-500/75" onClick={closeMenu}>Courses</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/event" className="transition hover:text-gray-500/75" onClick={closeMenu}>Event</Link>
+                                            </li>
+                                            <li><Link to="/program" className="transition hover:text-gray-500/75" onClick={closeMenu}>Program</Link></li>
                                         </ul>
                                     </nav>
                                 )
                             }
+
                         </div>
 
                         {
@@ -154,7 +181,7 @@ export default function Navbar() {
                                             onMouseEnter={handleMouseEnter}
                                             onMouseLeave={handleMouseLeave}
                                         >
-                                            {pathname === "/my-learning" ? (
+                                            {(pathname === "/my-learning" || pathname==="/earn") ? (
                                                 [
                                                     { link: "/", type: "Home", icon: "", color: "text-gray-700" },
                                                     { link: "/about", type: "About", icon: "", color: "text-gray-700" },
@@ -167,7 +194,7 @@ export default function Navbar() {
                                                         onClick={() => { afunction?.(); closeMenu(); }}
                                                         key={type}
                                                         to={link}
-                                                        className={`flex items-center gap-3 hover:bg-gray-100 px-4 py-3 text-sm ${color} transition-colors duration-150`}
+                                                        className={`max-sm:flex hidden items-center gap-3 hover:bg-gray-100 px-4 py-3 text-sm ${color} transition-colors duration-150`}
                                                     >
                                                         <i className={icon}></i> <span>{type}</span>
                                                     </Link>
@@ -300,6 +327,6 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

@@ -1,4 +1,4 @@
-"use client"
+
 
 import useFetchVideoForUser from "../tanstack/useFetchVideoForUser"
 import { useState } from "react"
