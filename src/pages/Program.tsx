@@ -89,8 +89,7 @@ const Program = () => {
                     <div
                         className="text-[calc(1.5rem+2vw)]  mx-auto mt-6 lg:mt-12 z-10 text-center leading-[calc(2rem+2vw)] text-[#0D0D0D] max-w-3xl font-bold"
                     >
-                        International Computational Biology and Bio-Innovation Bootcamp.
-
+                        International Computational Biology and Bio-Innovation Bootcamp. 
                     </div>
                     <p className="text-center md:mx-auto z-0 mt-5 md:mt-5 sm:text-base text-[.8rem] text-[#404040] font-normal max-w-xl px-2 opacity-70">
                         Build your first Bioinformatics app
@@ -244,8 +243,6 @@ const Program = () => {
                     </div>
                 </div>
             </section>
-
-
             <section className="bg-white">
                 <div className="max-w-5xl mx-auto mt-8 px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">

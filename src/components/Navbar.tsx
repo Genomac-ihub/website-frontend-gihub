@@ -5,9 +5,11 @@ import useUserDetail from '../tanstack/useUserDetail';
 import { useLocation } from 'react-router-dom';
 import useHandleModal from '../zustard/useHandleModal';
 import useLogout from '../tanstack/useLogout';
+import MyLearningSidebar from './MyLearningSidebar';
 
+// export default function Navbar
 export default function Navbar() {
-
+    const [openNav, setOpenNav] = useState(false)
     let hoverTimeout: ReturnType<typeof setTimeout> | null = null
 
     const handleMouseEnter = () => {
@@ -88,41 +90,67 @@ export default function Navbar() {
         }
     }, [isOpen])
 
+    useEffect(() => {
+        const isDesktop = window.innerWidth >= 768;
+        if (isDesktop) {
+            document.body.style.marginLeft = openNav ? '18rem' : '0';
+        }
+        return () => {
+            if (isDesktop) document.body.style.marginLeft = '0';
+        };
+    }, [openNav]);
+
 
     return (
-        <>
-            <div ref={sentinelRef} className={`h-[1px] w-full ${pathname === "/my-learning" ? "bg-black" : "bg-white"}`}></div>
+        <div>
+            <div ref={sentinelRef} className={`h-[1px] w-full ${(pathname === "/my-learning" || pathname === "/earn") ? "bg-black" : ""}`}></div>
 
             <header
                 id="my-header"
                 ref={navbarRef}
-                className={`fixed  w-full  top-0 left-0 z-50 transition-all duration-300  ${pathname === "/my-learning" ? "bg-black  text-white border-b-[1px] border-b-neutral-500" : isScrolled ? "bg-white/80 backdrop-blur-md border-[1px] border-gray-200/50 shadow-lg" : "border-[1px] border-gray-200 bg-[#F9F7F7] shadow-3xs "}
+                className={`fixed border-2  w-full  top-0 left-0 z-50 transition-all duration-300  ${(pathname === "/my-learning" || pathname === "/earn") ? "text-black bg-black  border-b-neutral-500" : isScrolled ? "bg-white/80 backdrop-blur-md border-[1px] border-gray-200/50 shadow-lg" : "border-[1px] border-gray-200 bg-[#F9F7F7] shadow-3xs "}
         w-full lg:sticky lg:top-0 
-        ${isStuck ? 'lg:w-full lg:rounded-none shadow-md' : pathname !== "/my-learning" ? 'lg:w-[89%] lg:mx-auto lg:my-10 lg:rounded-3xl' : ""}`}
+        ${isStuck ? 'lg:w-full lg:rounded-none shadow-md' : (pathname !== "/my-learning" && pathname !== "/earn") ? 'lg:w-[89%] lg:mx-auto lg:my-10 lg:rounded-3xl' : ""}`}
             >
-                <div className={`mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 transition-all`}>
+                <div className={`mx-auto max-w-screen-xl px-4 sm:px-6  lg:px-8 ${pathname === "/my-learning" || pathname === "/earn" ? "" : "px-2"}`}>
                     <div className="flex h-16 items-center justify-between">
-                        <div className="md:flex md:items-center md:gap-12">
-                            <Link to={'/'} className="block text-white" onClick={closeMenu}>
-                                <span className="sr-only">Home</span>
+                        <div className={`relative md:flex md:items-center md:gap-12 ${(pathname === "/my-learning" || pathname === "/earn") ? " " : "text-black"}`}>
+                            <div onClick={() => {
+                                if (pathname === "/my-learning" || pathname === "/earn") {
+                                    setOpenNav((prev) => !prev);
+                                }
+                            }} className={` text-white ${(pathname === "/my-learning" || pathname === "/earn") && "flex justify-center text-black items-center"} gap-3 cursor-pointer`}>
+                                {(pathname === "/my-learning" || pathname === "/earn") && <i className="bi bi-list text-xl text-white"></i>}
+                                <span className='sr-only text-white'>Home</span>
                                 <img src={logo} alt="Logo" className="w-[4rem] md:w-[5rem]" />
-                            </Link>
+                            </div>
                         </div>
+                        {openNav && <MyLearningSidebar isOpen={openNav} onClose={() => setOpenNav(false)} user={userData} />}
                         <div className="hidden md:block ">
                             {
                                 pathname === "/my-learning" && userData?.tags === "computaional-biology" ? (
                                     <h1>Hi {userData?.firstName}, {" "}G-IHUb welcomes you to <span className='text-orange-400'>Computational Biology</span></h1>
                                 ) : (
                                     <nav aria-label="Global">
-                                        <ul className="flex items-center gap-20 text-[1rem]">
-                                            <li><Link to={"/"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Home</Link></li>
-                                            <li><Link to={"/about"} className="transition hover:text-gray-500/75" onClick={closeMenu}>About</Link></li>
-                                            <li><Link to={"/courses"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Courses</Link></li>
-                                            <li><Link to={"/event"} className="transition hover:text-gray-500/75" onClick={closeMenu}>Event</Link></li>
+                                        <ul className={`flex items-center gap-20 text-[1rem] ${(pathname === "/my-learning" || pathname === "/earn") ? "text-white" : "text-black"}`}>
+                                            <li>
+                                                <Link to="/" className="transition hover:text-gray-500/75" onClick={closeMenu}>Home</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/about" className="transition hover:text-gray-500/75" onClick={closeMenu}>About</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/courses" className="transition hover:text-gray-500/75" onClick={closeMenu}>Courses</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/event" className="transition hover:text-gray-500/75" onClick={closeMenu}>Event</Link>
+                                            </li>
+                                            <li><Link to="/program" className="transition hover:text-gray-500/75" onClick={closeMenu}>Program</Link></li>
                                         </ul>
                                     </nav>
                                 )
                             }
+
                         </div>
 
                         {
@@ -153,19 +181,20 @@ export default function Navbar() {
                                             onMouseEnter={handleMouseEnter}
                                             onMouseLeave={handleMouseLeave}
                                         >
-                                            {pathname === "/my-learning" ? (
+                                            {(pathname === "/my-learning" || pathname === "/earn") ? (
                                                 [
                                                     { link: "/", type: "Home", icon: "", color: "text-gray-700" },
                                                     { link: "/about", type: "About", icon: "", color: "text-gray-700" },
                                                     { link: "/courses", type: "Courses", icon: "", color: "text-gray-500" },
                                                     { link: "/event", type: "events", icon: "", color: "text-gray-500" },
+                                                    { link: "/program", type: "Program", icon: "", color: "text-gray-500" },
                                                     { link: "", type: "Log out", icon: "", afunction: () => logout(), color: "text-red-500" },
                                                 ].map(({ link, type, icon, color, afunction }) => (
                                                     <Link
                                                         onClick={() => { afunction?.(); closeMenu(); }}
                                                         key={type}
                                                         to={link}
-                                                        className={`flex items-center gap-3 hover:bg-gray-100 px-4 py-3 text-sm ${color} transition-colors duration-150`}
+                                                        className={`max-sm:flex hidden items-center gap-3 hover:bg-gray-100 px-4 py-3 text-sm ${color} transition-colors duration-150`}
                                                     >
                                                         <i className={icon}></i> <span>{type}</span>
                                                     </Link>
@@ -194,16 +223,14 @@ export default function Navbar() {
                                     <div className="sm:flex sm:gap-4">
                                         <div className="hidden sm:flex gap-3">
                                             {[
-                                                { label: "Sign in", modal: "login", bg: "bg-gradient-to-br from-orange-500 to-orange-400 text-white hover:bg-orange-400/75" },
-                                                { label: "Sign up", modal: "signUp", bg: "border-[1px] border-gray-400 hover:bg-gray-100 " },
-                                            ].map(({ label, bg, modal }) => (
-                                                <button
-                                                    key={label}
-                                                    onClick={() => { setTheClickedModal(modal); closeMenu(); }}
+                                                { label: "Sign in", page: "login", bg: "bg-gradient-to-br from-orange-500 to-orange-400 text-white hover:bg-orange-400/75" },
+                                                { label: "Sign up", page: "sign-up", bg: "border-[1px] border-gray-400 hover:bg-gray-100 " },
+                                            ].map(({ label, bg, page }) => (
+                                                <Link to={`/${page}`} key={label}
                                                     className={`hidden md:flex items-center justify-center cursor-pointer rounded-full px-6 py-2.5 text-[.8rem] font-medium transition ${bg}`}
                                                 >
                                                     {label}
-                                                </button>
+                                                </Link>
                                             ))}
                                         </div>
                                     </div>
@@ -239,7 +266,8 @@ export default function Navbar() {
                                     { to: "/", label: "Home", icon: "🏠", desc: "Back to homepage" },
                                     { to: "/about", label: "About", icon: "ℹ️", desc: "Learn more about us" },
                                     { to: "/courses", label: "Courses", icon: "📚", desc: "Browse all courses" },
-                                    { to: "/event", label: "Event", icon: "📅", desc: "See upcoming events and workshops" }
+                                    { to: "/event", label: "Event", icon: "📅", desc: "See upcoming events and workshops" },
+                                    { to: "/program", label: "Program", icon: "🎓", desc: "Explore available programs" }
 
                                 ].map(({ to, label, icon, desc }, index) => (
                                     <li key={to} className={`transform transition-all duration-300 delay-${index * 100}`}>
@@ -265,12 +293,12 @@ export default function Navbar() {
                         </nav>
 
                         <div className="p-6 border-t border-gray-200/50 bg-white/50 space-y-4">
-                            <button
+                            <Link to="/login"
                                 onClick={() => {
-                                    setTheClickedModal("login");
+
                                     closeMenu();
                                 }}
-                                className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 text-white font-semibold hover:from-orange-600 hover:to-orange-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
+                                className="w-full block py-4 px-6 rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 text-white font-semibold hover:from-orange-600 hover:to-orange-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
                             >
                                 <span className="flex items-center justify-center gap-2">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -278,13 +306,13 @@ export default function Navbar() {
                                     </svg>
                                     Sign in
                                 </span>
-                            </button>
-                            <button
+                            </Link>
+                            <Link to="/sign-up"
                                 onClick={() => {
                                     setTheClickedModal("signUp");
                                     closeMenu();
                                 }}
-                                className="w-full py-4 px-6 rounded-xl border-2 border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                                className="w-full block py-4 px-6 rounded-xl border-2 border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
                             >
                                 <span className="flex items-center justify-center gap-2">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -292,11 +320,11 @@ export default function Navbar() {
                                     </svg>
                                     Sign up
                                 </span>
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

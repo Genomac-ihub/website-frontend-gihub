@@ -206,7 +206,7 @@ const Home = () => {
           <h1 className="text-4xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-snug sm:leading-tight break-words px-2">
             Start Learning with {" "}
             <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-              GI-HUB
+              G-IHUB
             </span>
           </h1>
 
