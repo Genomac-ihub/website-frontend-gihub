@@ -117,7 +117,7 @@ const SignUpPage = () => {
           </div>
         </div>
 
-        <div>
+        
           <button
             type="button"
             onClick={() => {
@@ -153,7 +153,7 @@ const SignUpPage = () => {
             </svg>
             Sign up with Google
           </button>
-        </div>
+  
         <div className="text-center mt-3">
           <p className="text-sm text-gray-600">
             Already have an account?{" "}
