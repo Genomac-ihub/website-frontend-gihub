@@ -17,7 +17,10 @@ type AuthVariable = {
 };
 
 const getUserAuthorised = async ({ data, type }: AuthVariable): Promise<ApiResponse> => {
+  console.log(type)
+  console.log("checking for the type")
   const url: string = type === "login" ? "/auth/api/sign-in" : "/auth/api/sign-up";
+  console.log(url)
   try {
     const response = await apiClient.post(url, data);
     console.log(response.data?.message);

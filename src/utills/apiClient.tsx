@@ -30,10 +30,14 @@ apiClient.interceptors.response.use(
   response => response,
   async (error) => {
     const originalRequest = error.config;
+    const url = originalRequest?.url || "";
 
     if (error.response?.status === 401 && !originalRequest._retry) {
+      if (url.startsWith("/auth/")) {
+        return Promise.reject(error);
+      }
+
       if (isRefreshing) {
-        // If refresh already happening, queue the requests
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
         })
@@ -45,9 +49,9 @@ apiClient.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        await apiClient.get("/auth/refresh-token"); 
+        await apiClient.get("/auth/refresh-token");
         processQueue(null);
-        return apiClient(originalRequest); 
+        return apiClient(originalRequest);
       } catch (err) {
         processQueue(err, null);
         return Promise.reject(err);

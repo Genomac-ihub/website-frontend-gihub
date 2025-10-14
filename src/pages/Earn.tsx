@@ -41,7 +41,7 @@ const Earn = () => {
       
 
       <section className="flex relative  flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
-        <GlowButton desc="🔥Get aid at least $25-$300 and above per project" />
+        <GlowButton desc="Get aid at least $25-$300 and above per project" />
 
         <div className="px-4 md:px-10 ">
           <div className="text-[calc(1.5rem+1vw)]  mx-auto mt-6 lg:mt-12 z-10 text-center leading-[calc(2rem+2vw)] text-[#0D0D0D] max-w-3xl font-bold">
@@ -57,13 +57,13 @@ const Earn = () => {
           <div className="flex sm:flex-row gap-3 sm:gap-4 md:justify-center items-center w-full px-10 sm:px-52 mt-[40px]">
             {/* Get Started */}
             <Link
-              to="#"
+             to="/earn"
               className="gap-3 mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500  py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-white shadow-md flex items-center text-[.9rem]"
             >
               Refer Now!
             </Link>
             <Link
-              to="#"
+            to="#"
               className="gap-3 mx-auto bg-transparent hover:from-orange-600 hover:to-orange-500 py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-orange-500 border flex items-center text-[.9rem]"
             >
               Refer Policy

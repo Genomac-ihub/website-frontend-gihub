@@ -181,7 +181,7 @@ export default function Navbar() {
                                             onMouseEnter={handleMouseEnter}
                                             onMouseLeave={handleMouseLeave}
                                         >
-                                            {(pathname === "/my-learning" || pathname==="/earn") ? (
+                                            {(pathname === "/my-learning" || pathname === "/earn") ? (
                                                 [
                                                     { link: "/", type: "Home", icon: "", color: "text-gray-700" },
                                                     { link: "/about", type: "About", icon: "", color: "text-gray-700" },
@@ -223,16 +223,14 @@ export default function Navbar() {
                                     <div className="sm:flex sm:gap-4">
                                         <div className="hidden sm:flex gap-3">
                                             {[
-                                                { label: "Sign in", modal: "login", bg: "bg-gradient-to-br from-orange-500 to-orange-400 text-white hover:bg-orange-400/75" },
-                                                { label: "Sign up", modal: "signUp", bg: "border-[1px] border-gray-400 hover:bg-gray-100 " },
-                                            ].map(({ label, bg, modal }) => (
-                                                <button
-                                                    key={label}
-                                                    onClick={() => { setTheClickedModal(modal); closeMenu(); }}
+                                                { label: "Sign in", page: "login", bg: "bg-gradient-to-br from-orange-500 to-orange-400 text-white hover:bg-orange-400/75" },
+                                                { label: "Sign up", page: "sign-up", bg: "border-[1px] border-gray-400 hover:bg-gray-100 " },
+                                            ].map(({ label, bg, page }) => (
+                                                <Link to={`/${page}`} key={label}
                                                     className={`hidden md:flex items-center justify-center cursor-pointer rounded-full px-6 py-2.5 text-[.8rem] font-medium transition ${bg}`}
                                                 >
                                                     {label}
-                                                </button>
+                                                </Link>
                                             ))}
                                         </div>
                                     </div>
@@ -295,12 +293,12 @@ export default function Navbar() {
                         </nav>
 
                         <div className="p-6 border-t border-gray-200/50 bg-white/50 space-y-4">
-                            <button
+                            <Link to="/login"
                                 onClick={() => {
-                                    setTheClickedModal("login");
+
                                     closeMenu();
                                 }}
-                                className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 text-white font-semibold hover:from-orange-600 hover:to-orange-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
+                                className="w-full block py-4 px-6 rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 text-white font-semibold hover:from-orange-600 hover:to-orange-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
                             >
                                 <span className="flex items-center justify-center gap-2">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -308,13 +306,13 @@ export default function Navbar() {
                                     </svg>
                                     Sign in
                                 </span>
-                            </button>
-                            <button
+                            </Link>
+                            <Link to="/sign-up"
                                 onClick={() => {
                                     setTheClickedModal("signUp");
                                     closeMenu();
                                 }}
-                                className="w-full py-4 px-6 rounded-xl border-2 border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                                className="w-full block py-4 px-6 rounded-xl border-2 border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
                             >
                                 <span className="flex items-center justify-center gap-2">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -322,7 +320,7 @@ export default function Navbar() {
                                     </svg>
                                     Sign up
                                 </span>
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

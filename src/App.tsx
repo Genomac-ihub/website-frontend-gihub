@@ -18,6 +18,10 @@ import EventStart from './components/EventStart';
 import BursaryForm from './components/BursaryForm';
 import Earn from './pages/Earn';
 import Earn2 from './components/Earn';
+import ProtectedRoute from './protectedRoute/ProtectedRoute';
+import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
+
 const router = createBrowserRouter([
   {
     element: <AppWrapper />,
@@ -44,9 +48,14 @@ const router = createBrowserRouter([
             path: '/program',
             element: <Earn />
           },
+
           {
-            path:"/earn",
-            element:<Earn2/>
+            path: "/earn",
+            element: (
+              <ProtectedRoute>
+                <Earn2 />
+              </ProtectedRoute>
+            ),
           },
           {
             path: "/event",
@@ -56,6 +65,8 @@ const router = createBrowserRouter([
           }
         ]
       },
+      { path: "/login", element: <LoginPage /> },
+      { path: "/sign-up", element: <SignUpPage /> },
       {
         path: "/about",
         element: <About />

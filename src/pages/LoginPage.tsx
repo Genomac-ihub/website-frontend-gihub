@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"
+// LoginPage component
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import useAuth from "../tanstack/useAuth"
 import useHandleModal from "../zustard/useHandleModal"
 import { useForm, } from "react-hook-form"
@@ -10,27 +11,30 @@ export type SignInInputs = {
     password: string
 }
 
-
-
 const LoginPage = () => {
     const { setTheUserDetails } = useUserDetail()
     const { register, handleSubmit, watch } = useForm<SignInInputs>();
     const { mutate, isPending, isError, data, error } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = (location.state as any)?.from?.pathname || (location.state as any)?.from || "/";
     console.log(error)
     const onSubmit: SubmitHandler<SignInInputs> = (data) => mutate({ data, type: "login" })
     const { setTheClickedModal } = useHandleModal()
     console.log(watch("email"))
     console.log(watch("password"))
-
+    const [searchParams] = useSearchParams();
+    const redirectPath = searchParams.get("redirect") || "/";
+    console.log(redirectPath)
     return (
-        <div className="w-[100%] h-[100vh] sm:h-[100%] sm:w-[500px] mx-auto flex items-center justify-center transition-all">
-            <div className="w-[100%] h-[100%] flex justify-center items-center flex-col sm:block space-y-8 p-6 bg-white rounded-lg shadow-md">
+        <div className="w-[100%] min-h-[100svh] sm:w-[500px] mx-auto flex items-center justify-center transition-all">
+            <div className="w-[100%] h-[100%] flex justify-center items-center flex-col sm:block space-y-8 p-6 bg-white">
                 <div className="text-center">
                     <h1 className="text-4xl font-bold text-[#ff7700]">G-IHUB</h1>
                     <p className="mt-2 text-gray-600">Sign in to your account</p>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-6" action="#" method="POST">
+                <form onSubmit={handleSubmit(onSubmit)} className="w-[90%] mt-8 space-y-6" action="#" method="POST">
                     <div className="rounded-md shadow-sm space-y-4">
                         <div>
                             <label htmlFor="email" className="sr-only">
@@ -101,9 +105,17 @@ const LoginPage = () => {
                         <button
                             type="button"
                             onClick={() => {
-                                window.location.href = 'http://localhost:5200/auth/google/  ';
-                                // 'https://offficial-website-backend-production.genomac.io/auth/google'
+                                const redirectUrl = redirectPath
+                                    ? `https://official-website-backend-production.genomac.io/auth/google?path=${encodeURIComponent(redirectPath)}`
+                                    : `https://official-website-backend-production.genomac.io/auth/google`;
+                                window.location.href = redirectUrl;
                             }}
+
+                            
+                            // onClick={() => {
+                            //     window.location.href = 'http://localhost:5200/auth/google/  ';
+                            //     // '
+                            // }}
                             className="w-full cursor-pointer hover:opacity-80 flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700]"
                         >
                             <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24" width="24" height="24">
@@ -134,9 +146,9 @@ const LoginPage = () => {
                 <div className="text-center mt-4">
                     <p className="text-sm text-gray-600">
                         Don't have an account?{" "}
-                        <div onClick={() => setTheClickedModal("signUp")} className="font-medium text-[#ff7700] hover:text-[#e66a00] cursor-pointer">
+                        <Link to="/sign-up" className="font-medium text-[#ff7700] hover:text-[#e66a00] cursor-pointer">
                             Sign up
-                        </div>
+                        </Link>
                     </p>
                 </div>
             </div>
