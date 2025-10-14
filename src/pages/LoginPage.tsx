@@ -107,11 +107,11 @@ const LoginPage = () => {
                             onClick={() => {
                                 const redirectUrl = redirectPath
                                     ? `https://official-website-backend-production.genomac.io/auth/google?path=${encodeURIComponent(redirectPath)}`
-                                    : `https://official-website-backend-production.genomac.io/auth/google`;
+                                    : `https://official-website-backend-production.genomac.io/auth/google/`;
                                 window.location.href = redirectUrl;
                             }}
 
-                            
+
                             // onClick={() => {
                             //     window.location.href = 'http://localhost:5200/auth/google/  ';
                             //     // '
