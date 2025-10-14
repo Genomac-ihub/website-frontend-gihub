@@ -106,7 +106,7 @@ const LoginPage = () => {
                             type="button"
                             onClick={() => {
                                 const redirectUrl = redirectPath
-                                    ? `https://offficial-website-backend-production.genomac.io/auth/googlepath=${encodeURIComponent(redirectPath)}`
+                                    ? `https://offficial-website-backend-production.genomac.io/auth/google?path=${encodeURIComponent(redirectPath)}`
                                     : `https://offficial-website-backend-production.genomac.io/auth/google/`;
                                 window.location.href = redirectUrl;
                             }}
