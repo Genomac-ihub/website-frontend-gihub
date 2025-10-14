@@ -4,6 +4,7 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   user?: { firstName?: string } | undefined;
+  mode?: 'overlay' | 'push';
 };
 
 // export default function MyLearningSidebar
