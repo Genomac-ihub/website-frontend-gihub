@@ -164,7 +164,7 @@ export default function Navbar() {
                                             {userData.profilePicture ? (
                                                 <img
                                                     src={userData.profilePicture}
-                                                    className="rounded-full w-10 h-10 object-contain"
+                                                    className="rounded-full w-10 h-10 object-cover"
                                                 />
                                             ) : (
                                                 <div>
@@ -184,10 +184,10 @@ export default function Navbar() {
                                             {(pathname === "/my-learning" || pathname === "/earn") ? (
                                                 [
                                                     { link: "/", type: "Home", icon: "", color: "text-gray-700" },
-                                                    { link: "/about", type: "About", icon: "bi bi-info-circle", color: "text-gray-700" },
-                                                    { link: "/courses", type: "Courses", icon: "bi bi-globe", color: "text-gray-700" },
-                                                    { link: "/event", type: "Events", icon: "bi bi-calendar-event", color: "text-gray-700" },
-                                                    { link: "/program", type: "Program", icon: "bi bi-journal-text", color: "text-gray-700" },
+                                                    { link: "/about", type: "About", icon: "", color: "text-gray-700" },
+                                                    { link: "/courses", type: "Courses", icon: "", color: "text-gray-700" },
+                                                    { link: "/event", type: "Events", icon: "", color: "text-gray-700" },
+                                                    { link: "/program", type: "Program", icon: "", color: "text-gray-700" },
                                                     { link: "", type: "Log out", icon: "", afunction: () => logout(), color: "text-red-500" },
                                                 ].map(({ link, type, icon, color, afunction }) => (
                                                     <Link
@@ -202,10 +202,10 @@ export default function Navbar() {
                                             ) : (
                                                 [
                                                     { link: "/my-learning", type: "My Learning", icon: "bi bi-book", color: "text-gray-700" },
-                                                    { link: "/about", type: "About", icon: "", color: "text-gray-700" },
+                                                    { link: "/about", type: "About", icon: "bi bi-info-circle", color: "text-gray-700" },
                                                     { link: "/courses", type: "Courses", icon: "bi bi-globe", color: "text-gray-700" },
-                                                    { link: "/event", type: "Events", icon: "", color: "text-gray-700" },
-                                                    { link: "/program", type: "Program", icon: "", color: "text-gray-700" },
+                                                    { link: "/event", type: "Events", icon: "bi bi-calendar-event", color: "text-gray-700" },
+                                                    { link: "/program", type: "Program", icon: "bi bi-journal-text", color: "text-gray-700" },
                                                     { link: "", type: "Log out", icon: "bi bi-box-arrow-right", afunction: () => logout(), color: "text-red-500" },
                                                 ].map(({ link, type, icon, color, afunction }) => (
                                                     <Link
