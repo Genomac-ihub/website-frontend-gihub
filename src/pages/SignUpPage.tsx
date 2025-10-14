@@ -122,8 +122,8 @@ const SignUpPage = () => {
             type="button"
             onClick={() => {
               const redirectUrl = redirectPath
-                ? `https://official-website-backend-production.genomac.io/auth/google?path=${encodeURIComponent(redirectPath)}`
-                : `https://official-website-backend-production.genomac.io/auth/google`;
+                ? `https://offficial-website-backend-production.genomac.io/auth/google?path=${encodeURIComponent(redirectPath)}`
+                : `https://offficial-website-backend-production.genomac.io/auth/google`;
               window.location.href = redirectUrl;
             }}
             // onClick={() => {
