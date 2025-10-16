@@ -23,11 +23,11 @@ const Earn = () => {
     },
     {
       title: "Your friend applies",
-      desc: "When they use your referral link to apply for a program, they get a 10% discount.",
+      desc: "When they use your referral link to apply for the computational biology program.",
     },
     {
       title: "Earn your Rewards",
-      desc: "You'll also receive a 10% of their application fee as reward for each successful referral.",
+      desc: "You'll also receive a $25 reward for each referral that successfully applies and pays for the program.",
     },
   ];
 
@@ -41,7 +41,7 @@ const Earn = () => {
       
 
       <section className="flex relative  flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
-        <GlowButton desc="get paid at least $25-$300 and above per project" />
+        <GlowButton desc="Get paid at least $25-$300 and above per project" />
 
         <div className="px-4 md:px-10 ">
           <div className="text-[calc(1.5rem+1vw)]  mx-auto mt-6 lg:mt-12 z-10 text-center leading-[calc(2rem+2vw)] text-[#0D0D0D] max-w-3xl font-bold">
@@ -49,15 +49,14 @@ const Earn = () => {
             rewarded!.
           </div>
           <p className="text-center md:mx-auto z-0 mt-5 md:mt-5 sm:text-base text-[.8rem] text-[#404040] font-normal max-w-xl px-2 opacity-70">
-           our earn program rewards you will a $25 commission when someone you
-            refer to Genomac successfully completes their application
-           for the computational biology program!.
+            Our Earn program rewards you with a $25 commission when someone you
+            refer Genomac successfully completes their application to our
+            Computational Biology course!.
           </p>
 
           <div className="flex sm:flex-row gap-3 sm:gap-4 md:justify-center items-center w-full px-10 sm:px-52 mt-[40px]">
             {/* Get Started */}
-            <Link
-             to="/earn"
+            <Link to="/earn"
               className="gap-3 mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500  py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-white shadow-md flex items-center text-[.9rem]"
             >
               Refer Now!
