@@ -185,16 +185,16 @@ export default function Navbar() {
                                                 [
                                                     { link: "/", type: "Home", icon: "", color: "text-gray-700" },
                                                     { link: "/about", type: "About", icon: "", color: "text-gray-700" },
-                                                    { link: "/courses", type: "Courses", icon: "", color: "text-gray-700" },
-                                                    { link: "/event", type: "Events", icon: "", color: "text-gray-700" },
-                                                    { link: "/program", type: "Program", icon: "", color: "text-gray-700" },
-                                                    { link: "", type: "Log out", icon: "", afunction: () => logout(), color: "text-red-500" },
+                                                    { link: "/courses", type: "Courses", icon: "bi bi-globe", color: "text-gray-700" },
+                                                    { link: "/event", type: "Events", icon: "bi bi-calendar-event", color: "text-gray-700" },
+                                                    { link: "/program", type: "Program", icon: "bi bi-journal-text", color: "text-gray-700" },
+                                                    { link: "", type: "Log out", icon: "bi bi-box-arrow-right", afunction: () => logout(), color: "text-red-500" },
                                                 ].map(({ link, type, icon, color, afunction }) => (
                                                     <Link
                                                         onClick={() => { afunction?.(); closeMenu(); }}
                                                         key={type}
                                                         to={link}
-                                                        className={`max-sm:flex hidden items-center gap-3 hover:bg-gray-100 px-4 py-3 text-sm ${color} transition-colors duration-150`}
+                                                        className={`flex md:hidden items-center gap-3 hover:bg-gray-100 px-4 py-3 text-sm ${color} transition-colors duration-150`}
                                                     >
                                                         <i className={icon}></i> <span>{type}</span>
                                                     </Link>
@@ -207,16 +207,20 @@ export default function Navbar() {
                                                     { link: "/event", type: "Events", icon: "bi bi-calendar-event", color: "text-gray-700" },
                                                     { link: "/program", type: "Program", icon: "bi bi-journal-text", color: "text-gray-700" },
                                                     { link: "", type: "Log out", icon: "bi bi-box-arrow-right", afunction: () => logout(), color: "text-red-500" },
-                                                ].map(({ link, type, icon, color, afunction }) => (
-                                                    <Link
-                                                        onClick={() => { afunction?.(); closeMenu(); }}
-                                                        key={type}
-                                                        to={link}
-                                                        className={`flex items-center gap-3 hover:bg-gray-100 px-4 py-3 text-sm ${color} transition-colors duration-150`}
-                                                    >
-                                                        <i className={icon}></i> <span>{type}</span>
-                                                    </Link>
-                                                ))
+                                                ].map(({ link, type, icon, color, afunction }) => {
+                                                    const isPrimary = type === "My Learning" || type === "Log out";
+                                                    const visibilityClasses = isPrimary ? "" : "md:hidden";
+                                                    return (
+                                                        <Link
+                                                            onClick={() => { afunction?.(); closeMenu(); }}
+                                                            key={type}
+                                                            to={link}
+            tion                                            className={`flex items-center gap-3 hover:bg-gray-100 px-4 py-3 text-sm ${color} transition-colors duration-150 ${visibilityClasses}`}
+                                                        >
+                                                            <i className={icon}></i> <span>{type}</span>
+                                                        </Link>
+                                                    );
+                                                })
                                             )}
                                         </div>
                                     )}
