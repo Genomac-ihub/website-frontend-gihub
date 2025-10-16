@@ -57,7 +57,7 @@ const Earn = () => {
           <div className="space-y-6">
             <div>
               <p className="text-sm font-medium mb-2">Your Affiliate Code</p>
-              <div className="flex items-center max-sm:flex-col flex-row gap-3">
+              <div className="flex  max-sm:flex-col flex-row gap-3">
                 <input
                   readOnly
                   value={isLoading ? "" : affiliateCode ?? ""}
