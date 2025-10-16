@@ -55,9 +55,9 @@ const Earn = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 rounded-xl p-6 bg-gradient-to-br from-orange-50 to-orange-100 ring-1 ring-orange-200 shadow-sm">
           <div className="space-y-6">
-            <div>
+            <div>g
               <p className="text-sm font-medium mb-2">Your Affiliate Code</p>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center max-sm:flex-row gap-3">
                 <input
                   readOnly
                   value={isLoading ? "" : affiliateCode ?? ""}
@@ -92,13 +92,6 @@ const Earn = () => {
                     aria-disabled="true"
                   >
                     Copy
-                  </button>
-                  <button
-                    disabled
-                    className="px-3 py-1 rounded-md text-white text-xs font-semibold bg-gray-400 cursor-not-allowed opacity-50"
-                    aria-disabled="true"
-                  >
-                    Open
                   </button>
                 </div>
               </div>
