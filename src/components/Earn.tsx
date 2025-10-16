@@ -11,15 +11,15 @@ const Earn = () => {
   const affiliateLink = isReferralComingSoon
     ? ""
     : affiliateCode
-    ? `https://portal.genomach.com/auth/signin?ref=${affiliateCode}`
-    : "";
+      ? `https://portal.genomach.com/auth/signin?ref=${affiliateCode}`
+      : "";
 
   const copyToClipboard = async (text: string, key: "code" | "link") => {
     try {
       await navigator.clipboard.writeText(text);
       setCopied((prev) => ({ ...prev, [key]: true }));
       setTimeout(() => setCopied((prev) => ({ ...prev, [key]: false })), 1500);
-    } catch {}
+    } catch { }
   };
 
   const earnedUSD = 0;
@@ -39,9 +39,8 @@ const Earn = () => {
           <button
             disabled={!affiliateCode}
             onClick={() => affiliateCode && copyToClipboard(affiliateCode, "code")}
-            className={`px-3 py-1 rounded-md text-white text-xs font-semibold ${
-              affiliateCode ? "bg-orange-500 hover:bg-orange-600" : "bg-gray-400 cursor-not-allowed"
-            }`}
+            className={`px-3 py-1 rounded-md text-white text-xs font-semibold ${affiliateCode ? "bg-orange-500 hover:bg-orange-600" : "bg-gray-400 cursor-not-allowed"
+              }`}
             aria-live="polite"
           >
             {copied.code ? "Copied" : "Copy"}
@@ -68,9 +67,8 @@ const Earn = () => {
                 <button
                   disabled={!affiliateCode}
                   onClick={() => affiliateCode && copyToClipboard(affiliateCode, "code")}
-                  className={`px-3 py-2 rounded-md text-white text-xs font-semibold ${
-                    affiliateCode ? "bg-orange-500 hover:bg-orange-600" : "bg-gray-400 cursor-not-allowed"
-                  }`}
+                  className={`px-3 py-2 rounded-md text-white text-xs font-semibold ${affiliateCode ? "bg-orange-500 hover:bg-orange-600" : "bg-gray-400 cursor-not-allowed"
+                    }`}
                 >
                   {copied.code ? "Copied" : "Copy"}
                 </button>
@@ -80,27 +78,29 @@ const Earn = () => {
             {/* Referral link section */}
             <div>
               <p className="text-sm font-medium mb-2">Your Referral Link</p>
-              <div className="flex max-sm:flex-col flex-row items-center gap-3">
+              <div className="flex max-sm:flex-col  flex-row gap-3">
                 <input
                   readOnly
                   value={""}
                   placeholder={"Coming soon"}
                   className="flex-1 px-3 py-2 rounded-md bg-white text-sm border border-orange-200"
                 />
-                <button
-                  disabled
-                  className="px-3 py-1 rounded-md text-white text-xs font-semibold bg-gray-400 cursor-not-allowed opacity-50"
-                  aria-disabled="true"
-                >
-                  Copy
-                </button>
-                <button
-                  disabled
-                  className="px-3 py-1 rounded-md text-white text-xs font-semibold bg-gray-400 cursor-not-allowed opacity-50"
-                  aria-disabled="true"
-                >
-                  Open
-                </button>
+                <div className="flex">
+                  <button
+                    disabled
+                    className="px-3 py-1 rounded-md text-white text-xs font-semibold bg-gray-400 cursor-not-allowed opacity-50"
+                    aria-disabled="true"
+                  >
+                    Copy
+                  </button>
+                  <button
+                    disabled
+                    className="px-3 py-1 rounded-md text-white text-xs font-semibold bg-gray-400 cursor-not-allowed opacity-50"
+                    aria-disabled="true"
+                  >
+                    Open
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -152,7 +152,7 @@ const Earn = () => {
           </div>
         </aside>
 
-      
+
       </div>
 
       <section className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
