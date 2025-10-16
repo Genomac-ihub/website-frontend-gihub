@@ -215,7 +215,7 @@ export default function Navbar() {
                                                             onClick={() => { afunction?.(); closeMenu(); }}
                                                             key={type}
                                                             to={link}
-            tion                                            className={`flex items-center gap-3 hover:bg-gray-100 px-4 py-3 text-sm ${color} transition-colors duration-150 ${visibilityClasses}`}
+                                                            className={`flex items-center gap-3 hover:bg-gray-100 px-4 py-3 text-sm ${color} transition-colors duration-150 ${visibilityClasses}`}
                                                         >
                                                             <i className={icon}></i> <span>{type}</span>
                                                         </Link>
