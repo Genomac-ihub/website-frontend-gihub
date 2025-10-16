@@ -41,7 +41,7 @@ const Earn = () => {
       
 
       <section className="flex relative  flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
-        <GlowButton desc="Get aid at least $25-$300 and above per project" />
+        <GlowButton desc="get paid at least $25-$300 and above per project" />
 
         <div className="px-4 md:px-10 ">
           <div className="text-[calc(1.5rem+1vw)]  mx-auto mt-6 lg:mt-12 z-10 text-center leading-[calc(2rem+2vw)] text-[#0D0D0D] max-w-3xl font-bold">
@@ -49,9 +49,9 @@ const Earn = () => {
             rewarded!.
           </div>
           <p className="text-center md:mx-auto z-0 mt-5 md:mt-5 sm:text-base text-[.8rem] text-[#404040] font-normal max-w-xl px-2 opacity-70">
-            Our Earn program rewards you with a 5% commission when someone you
-            refer to Genomac successfully completes their application to our
-            Bioinformatics course!.
+           our earn program rewards you will a $25 commission when someone you
+            refer to Genomac successfully completes their application
+           for the computational biology program!.
           </p>
 
           <div className="flex sm:flex-row gap-3 sm:gap-4 md:justify-center items-center w-full px-10 sm:px-52 mt-[40px]">
