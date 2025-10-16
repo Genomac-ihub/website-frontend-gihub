@@ -80,7 +80,7 @@ const Earn = () => {
             {/* Referral link section */}
             <div>
               <p className="text-sm font-medium mb-2">Your Referral Link</p>
-              <div className="flex items-center gap-3">
+              <div className="flex max-sm:flex-col flex-row items-center gap-3">
                 <input
                   readOnly
                   value={""}
