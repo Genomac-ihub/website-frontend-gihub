@@ -21,6 +21,7 @@ const Earn2 = lazy(() => import('./components/Earn'));
 const ProtectedRoute = lazy(() => import('./protectedRoute/ProtectedRoute'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const ReferralPolicy = lazy(() => import('./pages/ReferralPolicy'));
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
                 <Earn2 />
               </ProtectedRoute>
             ),
+          },
+          {
+            path: "/referral-policy",
+            element: <ReferralPolicy />
           },
           {
             path: "/event",

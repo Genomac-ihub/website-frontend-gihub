@@ -62,7 +62,7 @@ const Earn = () => {
               Refer Now!
             </Link>
             <Link
-            to="#"
+            to="/referral-policy"
               className="gap-3 mx-auto bg-transparent hover:from-orange-600 hover:to-orange-500 py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-orange-500 border flex items-center text-[.9rem]"
             >
               Refer Policy
