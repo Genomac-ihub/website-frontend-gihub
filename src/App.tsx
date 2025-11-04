@@ -1,26 +1,27 @@
+// Top-level: lazy imports and Suspense
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense, lazy } from "react";
 import './App.css';
-import Home from './pages/Home';
-import About from './pages/About';
-import MyLearning from './components/MyLearning';
-import NotFound from './pages/NotFound';
-import NothingToSee from './components/NothingToSee';
-import Layout from './Layout/Layout';
-import AppWrapper from './Layout/AppWrapper';
-import WebinarLandingPage from './components/WebinarLandingPage';
-import Courses from './pages/Courses';
-import Landing from './pages/Landing';
-import Form from './pages/Form';
-import Program from './pages/Program';
-import Event from './pages/Earn';
-import EventStart from './components/EventStart';
-import BursaryForm from './components/BursaryForm';
-import Earn from './pages/Earn';
-import Earn2 from './components/Earn';
-import ProtectedRoute from './protectedRoute/ProtectedRoute';
-import LoginPage from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const MyLearning = lazy(() => import('./components/MyLearning'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const NothingToSee = lazy(() => import('./components/NothingToSee'));
+const Layout = lazy(() => import('./Layout/Layout'));
+const AppWrapper = lazy(() => import('./Layout/AppWrapper'));
+const WebinarLandingPage = lazy(() => import('./components/WebinarLandingPage'));
+const Courses = lazy(() => import('./pages/Courses'));
+const Landing = lazy(() => import('./pages/Landing'));
+const Form = lazy(() => import('./pages/Form'));
+const Program = lazy(() => import('./pages/Program'));
+const EventStart = lazy(() => import('./components/EventStart'));
+const BursaryForm = lazy(() => import("./components/BursaryForm"));
+const Earn = lazy(() => import('./pages/Earn'));
+const Earn2 = lazy(() => import('./components/Earn'));
+const ProtectedRoute = lazy(() => import('./protectedRoute/ProtectedRoute'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const ReferralPolicy = lazy(() => import('./pages/ReferralPolicy'));
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
                 <Earn2 />
               </ProtectedRoute>
             ),
+          },
+          {
+            path: "/referral-policy",
+            element: <ReferralPolicy />
           },
           {
             path: "/event",
@@ -107,7 +112,11 @@ function App() {
     setDarkMode((prev) => !prev);
   };
 
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default App;

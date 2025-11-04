@@ -85,15 +85,15 @@ const Earn = () => {
                   placeholder={"Coming soon"}
                   className="flex-1 px-3 py-2 rounded-md bg-white text-sm border border-orange-200"
                 />
-                <div className="flex">
-                  <button
-                    disabled
-                    className="px-3 py-1 rounded-md text-white text-xs font-semibold bg-gray-400 cursor-not-allowed opacity-50"
-                    aria-disabled="true"
-                  >
-                    Copy
-                  </button>
-                </div>
+
+                <button
+                  disabled
+                  className="px-3 py-1 rounded-md text-white text-xs font-semibold bg-gray-400 cursor-not-allowed opacity-50"
+                  aria-disabled="true"
+                >
+                  Copy
+                </button>
+
               </div>
             </div>
 
