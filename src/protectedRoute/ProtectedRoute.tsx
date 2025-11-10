@@ -24,7 +24,20 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
     );
   }
 
-  if (user) return <>{children}</>;
+  const isCompleted = localStorage.getItem("isCompleted") === "true";
+
+  if (user) {
+    const path = location.pathname;
+    // If trying to access /earn but affiliate setup not completed, redirect to /affiliate-info
+    if (path === "/earn" && !isCompleted) {
+      return <Navigate to="/affiliate-info" replace />;
+    }
+    // If affiliate setup is completed and the user hits /affiliate-info, send them to /earn
+    if (path === "/affiliate-info" && isCompleted) {
+      return <Navigate to="/earn" replace />;
+    }
+    return <>{children}</>;
+  }
   //   window.location.href = whatsappGroupUrl
   // return null
   return (
@@ -34,9 +47,8 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
         location.pathname + location.search
       )}`}
       replace
-    />
-    
-  );
+    />)
+
 };
 
 export default ProtectedRoute;
