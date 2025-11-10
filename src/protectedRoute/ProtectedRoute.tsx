@@ -1,7 +1,8 @@
+// ProtectedRoute component
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import useUserDetail from "../tanstack/useUserDetail";
-
+import UserContactInfo from "../pages/UserContactAffiliateInfo";
 type Props = { children?: React.ReactNode };
 
 const ProtectedRoute: React.FC<Props> = ({ children }) => {
@@ -22,16 +23,31 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
     );
   }
 
-  if (user) return <>{children}</>;
+  if (!user) {
+    return (
+      <Navigate
+        to={`/login?redirect=${encodeURIComponent(
+          location.pathname + location.search
+        )}`}
+        replace
+      />
+    );
+  }
 
-  return (
-    <Navigate
-      to={`/login?redirect=${encodeURIComponent(
-        location.pathname + location.search
-      )}`}
-      replace
-    />
-  );
+  // Gate the /earn route behind contact info completion in localStorage
+  if (location.pathname === "/earn") {
+    const completed = localStorage.getItem("isCompleted") || false;
+
+
+    if (!completed) {
+      return <Navigate
+        to={`/affiliate-info`}
+        replace
+      />;
+    }
+  }
+
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;

@@ -22,6 +22,7 @@ const ProtectedRoute = lazy(() => import('./protectedRoute/ProtectedRoute'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 const ReferralPolicy = lazy(() => import('./pages/ReferralPolicy'));
+const UserContactAffiliateInfo = lazy(() => import('./pages/UserContactAffiliateInfo'));
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
           { path: "/about", element: <About /> },
           {
             path: "/courses",
-            element: <Courses />
+            element: <Landing />
           },
           { path: "/my-learning", element: <MyLearning /> },
           {
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
             element: <Program />
           },
           {
-            path: '/program',
+            path: '/earn-with-genomac',
             element: <Earn />
           },
 
@@ -58,6 +59,7 @@ const router = createBrowserRouter([
               </ProtectedRoute>
             ),
           },
+
           {
             path: "/referral-policy",
             element: <ReferralPolicy />
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
       },
       { path: "/login", element: <LoginPage /> },
       { path: "/sign-up", element: <SignUpPage /> },
+      {
+        path: "/affiliate-info",
+        element: (
+          <ProtectedRoute>
+            <UserContactAffiliateInfo />
+          </ProtectedRoute>
+        ),
+      },
       {
         path: "/about",
         element: <About />
@@ -113,9 +123,9 @@ function App() {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
+
+    <RouterProvider router={router} />
+
   );
 }
 

@@ -16,6 +16,9 @@ type AuthVariable = {
   type: string;
 };
 
+const BACKEND_VERIFICATION_FAIL_MSG = "We couldn't send the verification email right now. Please try again later.";
+const FRONTEND_VERIFICATION_FAIL_MSG = "We’re having trouble sending the verification email right now. Please try again later or use another login method.";
+
 const getUserAuthorised = async ({ data, type }: AuthVariable): Promise<ApiResponse> => {
   console.log(type)
   console.log("checking for the type")
@@ -25,10 +28,18 @@ const getUserAuthorised = async ({ data, type }: AuthVariable): Promise<ApiRespo
     const response = await apiClient.post(url, data);
     console.log(response.data?.message);
     return response.data;
-  } catch (error) {
-    const backendError = { success: false, message: "check your credentials!!"};
-    throw new Error(backendError.message)
+  } catch (error: any) {
+    const backendMessage =
+      error?.response?.data?.message ||
+      error?.response?.data?.error ||
+      error?.message;
 
+    const message =
+      backendMessage === BACKEND_VERIFICATION_FAIL_MSG
+        ? FRONTEND_VERIFICATION_FAIL_MSG
+        : backendMessage || "check your credentials!!";
+
+    throw new Error(message)
   };
 }
 const useAuth = () => {

@@ -40,7 +40,7 @@ export default function Footer() {
                             <h3 className="font-semibold text-lg mb-4">Explore</h3>
                             <nav className="space-y-3">
                                 <a href="/courses" className="block text-white/80 hover:text-white transition-colors">Why G-iHub</a>
-                                <a href="/business" className="block text-white/80 hover:text-white transition-colors">G-iHub for Business</a>
+                                <a href="/term-of-use" className="block text-white/80 hover:text-white transition-colors">Term of use</a>
                                 <a href="/blog" className="block text-white/80 hover:text-white transition-colors">Blog</a>
                             </nav>
                         </div>

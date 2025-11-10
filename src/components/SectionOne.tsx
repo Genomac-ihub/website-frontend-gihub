@@ -56,7 +56,7 @@ const SectionOne= () => {
         <div className='absolute bottom-7 md:bottom-60 flex md:w-[50%] mt-7 z-10 '>
             <button className='bg-orange-500 text-white text-[12px] px-2 md:px-4 py-1 rounded-4xl'>Contact Us</button>
 
-           <Link to={"/form"} className=' ml-5 text-[12px] border border-orange-600 text-orange-500 px-2 md:px-4 py-1 rounded-full hover:border-orange-700 hover:text-orange-700 transition-all duration-300'>
+           <Link to={"/bursary-form"} className=' ml-5 text-[12px] border border-orange-600 text-orange-500 px-2 md:px-4 py-1 rounded-full hover:border-orange-700 hover:text-orange-700 transition-all duration-300'>
              Apply For Scholarship
            </Link>
         </div>
