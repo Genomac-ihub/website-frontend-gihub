@@ -145,7 +145,7 @@ export default function Navbar() {
                                             <li>
                                                 <Link to="/event" className="transition hover:text-gray-500/75" onClick={closeMenu}>Event</Link>
                                             </li>
-                                            <li><Link to="/program" className="transition hover:text-gray-500/75" onClick={closeMenu}>Program</Link></li>
+                                            <li><Link to="/earn-with-genomac" className="transition hover:text-gray-500/75" onClick={closeMenu}>Earn with genomac</Link></li>
                                         </ul>
                                     </nav>
                                 )
@@ -187,7 +187,7 @@ export default function Navbar() {
                                                     { link: "/about", type: "About", icon: "", color: "text-gray-700" },
                                                     { link: "/courses", type: "Courses", icon: "bi bi-globe", color: "text-gray-700" },
                                                     { link: "/event", type: "Events", icon: "bi bi-calendar-event", color: "text-gray-700" },
-                                                    { link: "/program", type: "Program", icon: "bi bi-journal-text", color: "text-gray-700" },
+                                                    { link: "/earn-with-genomac", type: "Program", icon: "bi bi-journal-text", color: "text-gray-700" },
                                                     { link: "", type: "Log out", icon: "bi bi-box-arrow-right", afunction: () => logout(), color: "text-red-500" },
                                                 ].map(({ link, type, icon, color, afunction }) => (
                                                     <Link
@@ -205,7 +205,7 @@ export default function Navbar() {
                                                     { link: "/about", type: "About", icon: "bi bi-info-circle", color: "text-gray-700" },
                                                     { link: "/courses", type: "Courses", icon: "bi bi-globe", color: "text-gray-700" },
                                                     { link: "/event", type: "Events", icon: "bi bi-calendar-event", color: "text-gray-700" },
-                                                    { link: "/program", type: "Program", icon: "bi bi-journal-text", color: "text-gray-700" },
+                                                    { link: "/earn-with-genomac", type: "Earn with genomac", icon: "bi bi-cash", color: "text-gray-700" },
                                                     { link: "", type: "Log out", icon: "bi bi-box-arrow-right", afunction: () => logout(), color: "text-red-500" },
                                                 ].map(({ link, type, icon, color, afunction }) => {
                                                     const isPrimary = type === "My Learning" || type === "Log out";
@@ -274,7 +274,7 @@ export default function Navbar() {
                                     { to: "/about", label: "About", icon: "ℹ️", desc: "Learn more about us" },
                                     { to: "/courses", label: "Courses", icon: "📚", desc: "Browse all courses" },
                                     { to: "/event", label: "Event", icon: "📅", desc: "See upcoming events and workshops" },
-                                    { to: "/program", label: "Program", icon: "🎓", desc: "Explore available programs" }
+                                    { to: "/earn-with-genomac", label: "Program", icon: "🎓", desc: "Explore available programs" }
 
                                 ].map(({ to, label, icon, desc }, index) => (
                                     <li key={to} className={`transform transition-all duration-300 delay-${index * 100}`}>

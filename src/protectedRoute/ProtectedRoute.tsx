@@ -1,7 +1,8 @@
+// ProtectedRoute component
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import useUserDetail from "../tanstack/useUserDetail";
-
+import UserContactInfo from "../pages/UserContactAffiliateInfo";
 type Props = { children?: React.ReactNode };
 
 const ProtectedRoute: React.FC<Props> = ({ children }) => {

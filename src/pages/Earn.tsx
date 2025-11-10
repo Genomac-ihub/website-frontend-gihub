@@ -110,7 +110,7 @@ const Earn = () => {
             <div className="mt-[30px] md:mt-[60px] max-md:mx-auto">
               {/* Get Started */}
               <Link
-                to="#"
+                to="/earn"
                 className="gap-3 mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500  py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-white shadow-md flex items-center text-[.9rem]"
               >
                 Get started
