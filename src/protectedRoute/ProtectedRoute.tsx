@@ -8,6 +8,7 @@ type Props = { children?: React.ReactNode };
 const ProtectedRoute: React.FC<Props> = ({ children }) => {
   const { data: user, isLoading } = useUserDetail();
   const location = useLocation();
+  // const whatsappGroupUrl = "https://chat.whatsapp.com/BcZ96RFKRet5sCwvaMF5e0?mode=wwt";
 
   if (isLoading) {
     return (
@@ -23,31 +24,19 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
     );
   }
 
-  if (!user) {
-    return (
-      <Navigate
-        to={`/login?redirect=${encodeURIComponent(
-          location.pathname + location.search
-        )}`}
-        replace
-      />
-    );
-  }
-
-  // Gate the /earn route behind contact info completion in localStorage
-  if (location.pathname === "/earn") {
-    const completed = localStorage.getItem("isCompleted") || false;
-
-
-    if (!completed) {
-      return <Navigate
-        to={`/affiliate-info`}
-        replace
-      />;
-    }
-  }
-
-  return <>{children}</>;
+  if (user) return <>{children}</>;
+  //   window.location.href = whatsappGroupUrl
+  // return null
+  return (
+    
+    <Navigate
+      to={`/login?redirect=${encodeURIComponent(
+        location.pathname + location.search
+      )}`}
+      replace
+    />
+    
+  );
 };
 
 export default ProtectedRoute;
