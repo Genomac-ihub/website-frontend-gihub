@@ -4,6 +4,7 @@ import { CountrySelect } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
 import { useEffect, useRef, useState } from "react";
 import useUserForumForm from "../tanstack/useUserForumForm";
+import axios from "axios";
 
 export type UserInfoInputs = {
   topic: string;
@@ -27,23 +28,39 @@ const UserInfoForm = () => {
   const [search, setSearch] = useState("");
   const dropdownRef = useRef(null);
   const { mutate, isPending } = useUserForumForm()
+  const [countries, setCountries] = useState<string[]>([]);
   const filteredCountries = countries.filter((c) =>
-    c.toLowerCase().includes(search.toLowerCase())
+      c.toLowerCase().includes(search.toLowerCase())
   );
 
   const onSubmit: SubmitHandler<UserInfoInputs> = (data) => {
-    mutate(data);
+      mutate(data);
   };
 
 
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !(dropdownRef.current as any).contains(e.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+      const handleClickOutside = (e: MouseEvent) => {
+          if (dropdownRef.current && !(dropdownRef.current as any).contains(e.target)) {
+              setIsDropdownOpen(false);
+          }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+      const fetchCountries = async () => {
+          try {
+              const response = await axios.get("https://restcountries.com/v3.1/all?fields=name");
+              const countryNames = response.data
+                  .map((country: any) => country.name.common)
+                  .sort();
+              setCountries(countryNames);
+          } catch (error) {
+              console.error("Error fetching countries:", error);
+          }
+      };
+      fetchCountries();
   }, []);
 
   return (
