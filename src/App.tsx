@@ -12,7 +12,7 @@ const AppWrapper = lazy(() => import('./Layout/AppWrapper'));
 const WebinarLandingPage = lazy(() => import('./components/WebinarLandingPage'));
 const Courses = lazy(() => import('./pages/Courses'));
 const Landing = lazy(() => import('./pages/Landing'));
-const Form = lazy(() => import('./pages/Form'));
+// Removed: const Form = lazy(() => import('./pages/Form'));
 const Program = lazy(() => import('./pages/Program'));
 const EventStart = lazy(() => import('./components/EventStart'));
 const BursaryForm = lazy(() => import("./components/BursaryForm"));
