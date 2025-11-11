@@ -155,19 +155,22 @@ const BursaryForm = () => {
   return (
     <div className="md:py-20 md:px-24 p-6 dark:bg-[#040404] dark:text-white transition duration-400">
       <h2 className="font-semibold md:text-4xl text-2xl text-center mb-8">
-        BURSARY WAIVER APPLICATION
+        SCHORLARSHIP APPLICATION
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-10">
         <div className="flex flex-col gap-8">
           {/* Personal Info */}
           <div className="flex flex-col gap-8">
-            <h3 className="font-medium text-2xl text-[#FF7700]">Personal Information</h3>
+            <h3 className="font-medium text-2xl text-[#FF7700]">
+              Personal Information
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">First Name</label>
                 <input
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.firstName ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
+                    formErrors.firstName ? "border-red-500" : ""
+                  }`}
                   type="text"
                   name="firstName"
                   value={applicantForm.firstName}
@@ -182,8 +185,9 @@ const BursaryForm = () => {
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">Last Name</label>
                 <input
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.lastName ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
+                    formErrors.lastName ? "border-red-500" : ""
+                  }`}
                   type="text"
                   name="lastName"
                   value={applicantForm.lastName}
@@ -198,8 +202,9 @@ const BursaryForm = () => {
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">Email</label>
                 <input
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.email ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
+                    formErrors.email ? "border-red-500" : ""
+                  }`}
                   type="email"
                   name="email"
                   value={applicantForm.email}
@@ -217,8 +222,9 @@ const BursaryForm = () => {
                   name="country"
                   value={applicantForm.country}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${formErrors.country ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
+                    formErrors.country ? "border-red-500" : ""
+                  }`}
                   required
                 >
                   <option value="">Select a country</option>
@@ -237,7 +243,9 @@ const BursaryForm = () => {
 
           {/* Education Background */}
           <div className="flex flex-col gap-8">
-            <h3 className="font-medium text-2xl text-[#FF7700]">Education Background</h3>
+            <h3 className="font-medium text-2xl text-[#FF7700]">
+              Education Background
+            </h3>
             <div className="flex flex-col gap-2">
               <label className="text-lg font-medium">
                 Educational Background (Field of Study or Work Experience)
@@ -250,12 +258,67 @@ const BursaryForm = () => {
                 placeholder="Type here..."
               />
             </div>
+            <div>
+              <label className="text-lg font-medium">
+                Do you have any experience with programming?
+              </label>
+              <div>
+                <Select
+                  name="canCommit"
+                  value={applicantForm.canCommit}
+                  onChange={handleInputChange}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
+                    formErrors.canCommit ? "border-red-500" : ""
+                  }`}
+                  required
+                >
+                  <option value="">Choose</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </Select>
+              </div>
+            </div>
+            <div>
+              <label className="text-lg font-medium">
+                If you select yes, which languages do you use?
+              </label>
+              <div>
+                <Select
+                  name="canCommit"
+                  value={applicantForm.canCommit}
+                  onChange={handleInputChange}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
+                    formErrors.canCommit ? "border-red-500" : ""
+                  }`}
+                  required
+                >
+                  <option value="">Choose</option>
+                  <option value="python">Python</option>
+                  <option value="R">R</option>
+                  <option value="bash">Bash</option>
+                  <option value="">None</option>
+                </Select>
+              </div>
+            </div>
           </div>
 
           {/* Motivation & Commitment */}
           <div className="flex flex-col gap-8">
             <h3 className="font-medium text-2xl text-[#FF7700]">Commitment</h3>
             <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
+                <label className="text-lg font-medium">
+                  Why are you interested in becoming a computational biologist
+                  and bioinformatics data science engineer?
+                </label>
+                <textarea
+                  className="border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm h-32 dark:bg-[#1a1a1a] dark:border-gray-600"
+                  name="scholarshipReason"
+                  value={applicantForm.scholarshipReason}
+                  onChange={handleInputChange}
+                  placeholder="Type here..."
+                />
+              </div>
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">
                   Why do you think the scholarship should be awarded to you and
@@ -269,16 +332,19 @@ const BursaryForm = () => {
                   placeholder="Type here..."
                 />
               </div>
+
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">
-                  Can you commit to completing this 6 weeks intensive program with hands-on projects and mentorship?
+                  Can you commit to completing this 5-month intensive program
+                  with hands-on projects and mentorship
                 </label>
                 <Select
                   name="canCommit"
                   value={applicantForm.canCommit}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${formErrors.canCommit ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
+                    formErrors.canCommit ? "border-red-500" : ""
+                  }`}
                   required
                 >
                   <option value="">Choose</option>
@@ -293,9 +359,15 @@ const BursaryForm = () => {
                 <label className="text-lg font-medium">
                   How many hours per week can you dedicate to the program?
                 </label>
-                <input name="hoursPerWeek" value={applicantForm.hoursPerWeek}
-                  onChange={handleInputChange} className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.email ? "border-red-500" : ""
-                    }`} placeholder="e.g 3 hours " />
+                <input
+                  name="hoursPerWeek"
+                  value={applicantForm.hoursPerWeek}
+                  onChange={handleInputChange}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
+                    formErrors.email ? "border-red-500" : ""
+                  }`}
+                  placeholder="e.g 3 hours "
+                />
                 {/* <select
                   name="hoursPerWeek"
                   value={applicantForm.hoursPerWeek}
@@ -313,7 +385,9 @@ const BursaryForm = () => {
 
           {/* Financial Commitment */}
           <div className="flex flex-col gap-8">
-            <h3 className="font-medium text-2xl text-[#FF7700]">Financial Commitment</h3>
+            <h3 className="font-medium text-2xl text-[#FF7700]">
+              Financial Commitment
+            </h3>
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2">
                 <input
@@ -321,15 +395,20 @@ const BursaryForm = () => {
                   name="scholarshipAwareness"
                   checked={applicantForm.scholarshipAwareness}
                   onChange={handleInputChange}
-                  className={`accent-[#FF7700] w-5 h-5 ${formErrors.scholarshipAwareness ? "border-red-500" : ""
-                    }`}
+                  className={`accent-[#FF7700] w-5 h-5 ${
+                    formErrors.scholarshipAwareness ? "border-red-500" : ""
+                  }`}
                   required
                 />
                 <label className="text-lg">
-                  Are you aware that this bursary waiver covers 90% of the program cost, and you will be required to pay the remaining $100?
+                  Are you aware that this bursary waiver covers 90% of the
+                  program cost, and you will be required to pay the remaining
+                  $500?
                 </label>
                 {formErrors.scholarshipAwareness && (
-                  <p className="text-red-500 text-sm">{formErrors.scholarshipAwareness}</p>
+                  <p className="text-red-500 text-sm">
+                    {formErrors.scholarshipAwareness}
+                  </p>
                 )}
               </div>
               <div className="flex items-center gap-2">
@@ -338,28 +417,39 @@ const BursaryForm = () => {
                   name="paymentAbility"
                   checked={applicantForm.paymentAbility}
                   onChange={handleInputChange}
-                  className={`accent-[#FF7700] w-5 h-5 ${formErrors.paymentAbility ? "border-red-500" : ""
-                    }`}
+                  className={`accent-[#FF7700] w-5 h-5 ${
+                    formErrors.paymentAbility ? "border-red-500" : ""
+                  }`}
                   required
                 />
                 <label className="text-lg">
-                  If selected, are you willing and able to pay the compulsory $100 (10%) commitment fee? (Installment is allowed)
+                  If selected, are you willing and able to pay the compulsory
+                  $500 (10%) commitment fee? (Installment is allowed)
                 </label>
                 {formErrors.paymentAbility && (
-                  <p className="text-red-500 text-sm">{formErrors.paymentAbility}</p>
+                  <p className="text-red-500 text-sm">
+                    {formErrors.paymentAbility}
+                  </p>
                 )}
               </div>
             </div>
           </div>
 
           {/* Submission Status Messages */}
-          {isPending && <p className="text-center text-blue-500">Submitting application...</p>}
+          {isPending && (
+            <p className="text-center text-blue-500">
+              Submitting application...
+            </p>
+          )}
           {submitStatus === "success" && (
-            <p className="text-center text-green-500">Application submitted successfully! Redirecting...</p>
+            <p className="text-center text-green-500">
+              Application submitted successfully! Redirecting...
+            </p>
           )}
           {submitStatus === "error" && (
             <p className="text-center text-red-500">
-              {formErrors.backend || "Failed to submit application. Please check the form and try again."}
+              {formErrors.backend ||
+                "Failed to submit application. Please check the form and try again."}
             </p>
           )}
 
@@ -376,8 +466,9 @@ const BursaryForm = () => {
             <button
               type="submit"
               disabled={isPending}
-              className={`bg-[#FF7700] rounded-full md:p-2.5 md:px-4 text-[14px] p-2 md:text-[16px] px-2.5 text-white hover:bg-orange-400 transition duration-300 ${isPending ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+              className={`bg-[#FF7700] rounded-full md:p-2.5 md:px-4 text-[14px] p-2 md:text-[16px] px-2.5 text-white hover:bg-orange-400 transition duration-300 ${
+                isPending ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             >
               {isPending ? "Submitting..." : "Submit Application"}
             </button>
