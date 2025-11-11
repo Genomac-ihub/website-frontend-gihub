@@ -9,9 +9,11 @@ interface FormData {
   country: string;
   educationBackground: string;
   scholarshipReason: string;
-  canCommit: string;
+  canCommit1: string;
+  canCommit2: string;
+  canCommit3: string;
   hoursPerWeek: string;
-  financialCommitment: string;
+  financialCommitment1: string;
 }
 
 const postForm = async (formData: FormData) => {
