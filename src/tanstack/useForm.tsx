@@ -13,7 +13,7 @@ interface FormData {
   canCommit2: string;
   canCommit3: string;
   hoursPerWeek: string;
-  financialCommitment1: string;
+  financialCommitment: string; // renamed from financialCommitment1
 }
 
 const postForm = async (formData: FormData) => {

@@ -9,7 +9,9 @@ import Content from "../assets/Content.png";
 import grid from "../assets/image/hero-grid.DF71ygke.svg";
 import iconlove from "../assets/image/Icon-love.png";
 import image from "../assets/image/image.svg";
+import { motion } from "framer-motion";
 import Accordion from "../components/AccordionEarn";
+import { ArrowRight, Verify } from "iconsax-reactjs";
 
 const Earn = () => {
   const courseData = [
@@ -38,11 +40,50 @@ const Earn = () => {
       <img src={grid} className='absolute -top-60  opacity-6 -z-1' />
       <img src={image} className='absolute hidden md:-top-60' />
 
-      
+
 
       <section className="flex relative  flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
-        <GlowButton desc="Get paid at least $25-$300 and above per project" />
+        <div className="z-0 relative inline-block cursor-pointer">
 
+          <div className="absolute inset-[-4px] rounded-[2rem] overflow-hidden">
+            <motion.div
+              className="absolute inset-0 w-full h-full"
+              style={{
+                background: `linear-gradient(90deg, transparent, transparent, #FF7700, transparent, transparent)`,
+                backgroundSize: "300% 100%",
+              }}
+              animate={{
+                backgroundPosition: ["100% center", "-200% center"], // Adjusted for seamless loop
+              }}
+              transition={{
+                duration: 3,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+                repeatType: "loop", // Ensures smooth looping
+              }}
+            />
+          </div>
+
+          <div className="relative gap-2 border-[1px] text-black border-[#FF7700] text-sm sm:text-[.7rem] md:text-[0.813rem] bg-gray-100  px-3 py-2 flex items-center font-medium capitalize rounded-[2rem] ">
+            <Verify size="17" className="" />
+
+            <h2 className="text-[.6rem] sm:text-[.8rem] md:text-[.8rem]  font-bold leading-snug text-gray-900">
+              Get paid at least $25-$300 and above per project
+            </h2>
+
+          </div>
+
+          {/* Permanent glow around the entire button */}
+          <div
+            className="absolute inset-[-2px] rounded-[2rem] opacity-70 blur-[1px]"
+            style={{
+              boxShadow: "0 0 8px 2px ##71bcd4",
+              border: "1px solid ##71bcd4",
+            }}
+          />
+
+
+        </div>
         <div className="px-4 md:px-10 ">
           <div className="text-[calc(1.5rem+1vw)]  mx-auto mt-6 lg:mt-12 z-10 text-center leading-[calc(2rem+2vw)] text-[#0D0D0D] max-w-3xl font-bold">
             Turn your network into cash — refer a friend to Genomac and get
@@ -62,7 +103,7 @@ const Earn = () => {
               Refer Now!
             </Link>
             <Link
-            to="/referral-policy"
+              to="/referral-policy"
               className="gap-3 mx-auto bg-transparent hover:from-orange-600 hover:to-orange-500 py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-orange-500 border flex items-center text-[.9rem]"
             >
               Refer Policy
@@ -153,7 +194,7 @@ const Earn = () => {
       </section>
 
       {/* FAQs next... */}
-      
+
       <Accordion />
 
     </>
