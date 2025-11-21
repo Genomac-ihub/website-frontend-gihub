@@ -15,7 +15,7 @@ interface FormData {
   scholarshipReason2: string;
   canCommit1: string;
   canCommit2: string;
-  canCommit3:string;
+  canCommit3: string;
   hoursPerWeek: string;
   scholarshipAwareness: boolean;
   paymentAbility: boolean;
@@ -37,13 +37,13 @@ const BursaryForm = () => {
     scholarshipReason2: "",
     canCommit1: "",
     canCommit2: "",
-    canCommit3:"",
+    canCommit3: "",
     hoursPerWeek: "",
     scholarshipAwareness: false,
     paymentAbility: false,
     financialCommitment: "",
   });
-  console.log(applicantForm)
+  console.log(applicantForm);
   const [countries, setCountries] = useState<string[]>([]);
   const [submitStatus, setSubmitStatus] = useState<string | null>(null);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -53,15 +53,58 @@ const BursaryForm = () => {
 
   const makeRequest = async () => {
     try {
-      const response = await axios.get(
-        "https://www.apicountries.com/countries"
-      );
-      const countryNames = response.data
-        .map((country: any) => country.name.common)
-        .sort();
-      setCountries(countryNames);
-    } catch (error) {
-      console.error("Error fetching countries:", error);
+      const isLocalhost =
+        window?.location?.hostname === "localhost" ||
+        window?.location?.hostname === "127.0.0.1";
+      const url = isLocalhost
+        ? "http://localhost:4000/countries"
+        : "https://www.apicountries.com/countries";
+
+      const response = await axios.get(url);
+      const data = response?.data;
+
+      // Support multiple possible response shapes: array, { data: [] }, etc.
+      let items: any[] = [];
+      if (Array.isArray(data)) {
+        items = data;
+      } else if (Array.isArray(data?.data)) {
+        items = data.data;
+      } else {
+        console.warn("Unexpected countries response shape:", data);
+        setCountries([]);
+        return;
+      }
+
+      const countryNames = items
+        .map((c: any) => {
+          if (!c) return null;
+          if (typeof c === "string") return c;
+          return (
+            c?.name?.common ??
+            c?.name ??
+            c?.country ??
+            c?.country_name ??
+            c?.common_name ??
+            c?.official ??
+            null
+          );
+        })
+        .filter(Boolean)
+        .sort((a: string, b: string) => a.localeCompare(b));
+
+      setCountries(countryNames as string[]);
+    } catch (err: any) {
+      // Axios network errors in the browser often indicate CORS issues.
+      if (axios.isAxiosError(err) && err.code === "ERR_NETWORK") {
+        console.error(
+          "Network error while fetching countries. This may be a CORS issue in the browser:",
+          err.message
+        );
+      } else {
+        console.error("Error fetching countries:", err);
+      }
+      // Ensure component continues to render even when fetch fails
+      setCountries([]);
     }
   };
 
@@ -70,11 +113,12 @@ const BursaryForm = () => {
   }, []);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
-
 
     setApplicantForm((prev) => ({
       ...prev,
@@ -89,14 +133,20 @@ const BursaryForm = () => {
     if (!applicantForm.lastName) errors.lastName = "Last Name is required";
     if (!applicantForm.email) errors.email = "Email is required";
     if (!applicantForm.country) errors.country = "Country is required";
-    if (!applicantForm.canCommit1) errors.canCommit = "Commitment selection is required";
-    if (!applicantForm.canCommit2) errors.canCommit = "Commitment selection is required";
+    if (!applicantForm.canCommit1)
+      errors.canCommit = "Commitment selection is required";
+    if (!applicantForm.canCommit2)
+      errors.canCommit = "Commitment selection is required";
     if (!applicantForm.scholarshipAwareness)
-      errors.scholarshipAwareness = "Scholarship awareness confirmation is required";
+      errors.scholarshipAwareness =
+        "Scholarship awareness confirmation is required";
     if (!applicantForm.paymentAbility)
       errors.paymentAbility = "Payment ability confirmation is required";
     // Basic email format validation
-    if (applicantForm.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(applicantForm.email))
+    if (
+      applicantForm.email &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(applicantForm.email)
+    )
       errors.email = "Invalid email format";
     return errors;
   };
@@ -114,8 +164,9 @@ const BursaryForm = () => {
     }
 
     // Combine scholarshipAwareness and paymentAbility into financialCommitment
-    const financialCommitment = `Scholarship Awareness: ${applicantForm.scholarshipAwareness ? "Yes" : "No"
-      }, Payment Ability: ${applicantForm.paymentAbility ? "Yes" : "No"}`;
+    const financialCommitment = `Scholarship Awareness: ${
+      applicantForm.scholarshipAwareness ? "Yes" : "No"
+    }, Payment Ability: ${applicantForm.paymentAbility ? "Yes" : "No"}`;
 
     // Prepare payload matching backend schema
     const payload = {
@@ -155,12 +206,16 @@ const BursaryForm = () => {
         });
         // Using navigate for safer redirect
         setTimeout(() => {
-          window.open("https://chat.whatsapp.com/BRv9WFnVjDIC4Np6dkKPlF?mode=ac_t", "_blank");
+          window.open(
+            "https://chat.whatsapp.com/BRv9WFnVjDIC4Np6dkKPlF?mode=ac_t",
+            "_blank"
+          );
         }, 1000);
       },
       onError: (err: any) => {
         setSubmitStatus("error");
-        const backendErrors = err.response?.data?.message || "Failed to submit application.";
+        const backendErrors =
+          err.response?.data?.message || "Failed to submit application.";
         setFormErrors({ backend: backendErrors });
         console.error("Error submitting form:", err);
       },
@@ -183,8 +238,9 @@ const BursaryForm = () => {
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">First Name</label>
                 <input
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.firstName ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
+                    formErrors.firstName ? "border-red-500" : ""
+                  }`}
                   type="text"
                   name="firstName"
                   value={applicantForm.firstName}
@@ -199,8 +255,9 @@ const BursaryForm = () => {
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">Last Name</label>
                 <input
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.lastName ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
+                    formErrors.lastName ? "border-red-500" : ""
+                  }`}
                   type="text"
                   name="lastName"
                   value={applicantForm.lastName}
@@ -215,8 +272,9 @@ const BursaryForm = () => {
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">Email</label>
                 <input
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.email ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
+                    formErrors.email ? "border-red-500" : ""
+                  }`}
                   type="email"
                   name="email"
                   value={applicantForm.email}
@@ -234,8 +292,9 @@ const BursaryForm = () => {
                   name="country"
                   value={applicantForm.country}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${formErrors.country ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
+                    formErrors.country ? "border-red-500" : ""
+                  }`}
                   required
                 >
                   <option value="">Select a country</option>
@@ -278,8 +337,9 @@ const BursaryForm = () => {
                   name="canCommit1"
                   value={applicantForm.canCommit1}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${formErrors.canCommit ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
+                    formErrors.canCommit ? "border-red-500" : ""
+                  }`}
                   required
                 >
                   <option value="">Choose</option>
@@ -297,8 +357,9 @@ const BursaryForm = () => {
                   name="canCommit2"
                   value={applicantForm.canCommit2}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${formErrors.canCommit ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
+                    formErrors.canCommit ? "border-red-500" : ""
+                  }`}
                   required
                 >
                   <option value="">Choose</option>
@@ -351,8 +412,9 @@ const BursaryForm = () => {
                   name="canCommit3"
                   value={applicantForm.canCommit3}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${formErrors.canCommit ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
+                    formErrors.canCommit ? "border-red-500" : ""
+                  }`}
                   required
                 >
                   <option value="">Choose</option>
@@ -371,8 +433,9 @@ const BursaryForm = () => {
                   name="hoursPerWeek"
                   value={applicantForm.hoursPerWeek}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.email ? "border-red-500" : ""
-                    }`}
+                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
+                    formErrors.email ? "border-red-500" : ""
+                  }`}
                   placeholder=""
                 />
                 {/* <select
@@ -402,8 +465,9 @@ const BursaryForm = () => {
                   name="scholarshipAwareness"
                   checked={applicantForm.scholarshipAwareness}
                   onChange={handleInputChange}
-                  className={`accent-[#FF7700] w-5 h-5 ${formErrors.scholarshipAwareness ? "border-red-500" : ""
-                    }`}
+                  className={`accent-[#FF7700] w-5 h-5 ${
+                    formErrors.scholarshipAwareness ? "border-red-500" : ""
+                  }`}
                   required
                 />
                 <label className="text-lg">
@@ -423,8 +487,9 @@ const BursaryForm = () => {
                   name="paymentAbility"
                   checked={applicantForm.paymentAbility}
                   onChange={handleInputChange}
-                  className={`accent-[#FF7700] w-5 h-5 ${formErrors.paymentAbility ? "border-red-500" : ""
-                    }`}
+                  className={`accent-[#FF7700] w-5 h-5 ${
+                    formErrors.paymentAbility ? "border-red-500" : ""
+                  }`}
                   required
                 />
                 <label className="text-lg">
@@ -471,8 +536,9 @@ const BursaryForm = () => {
             <button
               type="submit"
               disabled={isPending}
-              className={`bg-[#FF7700] rounded-full md:p-2.5 md:px-4 text-[14px] p-2 md:text-[16px] px-2.5 text-white hover:bg-orange-400 transition duration-300 ${isPending ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+              className={`bg-[#FF7700] rounded-full md:p-2.5 md:px-4 text-[14px] p-2 md:text-[16px] px-2.5 text-white hover:bg-orange-400 transition duration-300 ${
+                isPending ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             >
               {isPending ? "Submitting..." : "Submit Application"}
             </button>
