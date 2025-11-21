@@ -53,7 +53,9 @@ const BursaryForm = () => {
 
   const makeRequest = async () => {
     try {
-      const response = await axios.get("https://restcountries.com/v3.1/all?fields=name");
+      const response = await axios.get(
+        "https://www.apicountries.com/countries"
+      );
       const countryNames = response.data
         .map((country: any) => country.name.common)
         .sort();
@@ -168,7 +170,7 @@ const BursaryForm = () => {
   return (
     <div className="md:py-20 md:px-24 p-6 dark:bg-[#040404] dark:text-white transition duration-400">
       <h2 className="font-semibold md:text-4xl text-2xl text-center mb-8">
-        SCHORLARSHIP APPLICATION
+        SCHOLARSHIP APPLICATION
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-10">
         <div className="flex flex-col gap-8">
@@ -363,7 +365,7 @@ const BursaryForm = () => {
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">
-                  How many hours per week can you dedicate to the program?
+                  Enter your referral code if you have any
                 </label>
                 <input
                   name="hoursPerWeek"
@@ -371,7 +373,7 @@ const BursaryForm = () => {
                   onChange={handleInputChange}
                   className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${formErrors.email ? "border-red-500" : ""
                     }`}
-                  placeholder="e.g 3 hours "
+                  placeholder=""
                 />
                 {/* <select
                   name="hoursPerWeek"
