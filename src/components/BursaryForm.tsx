@@ -1,7 +1,6 @@
 // src/components/Form.jsx
-import { useEffect, useState } from "react";
-import { Select } from "@headlessui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import useApplicantForm from "../tanstack/useForm";
 import axios from "axios";
 
@@ -45,71 +44,53 @@ const BursaryForm = () => {
   });
   console.log(applicantForm);
   const [countries, setCountries] = useState<string[]>([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const filteredCountries = countries.filter((c) =>
+    c.toLowerCase().includes(search.toLowerCase())
+  );
   const [submitStatus, setSubmitStatus] = useState<string | null>(null);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
 
   const { mutate, isPending, isError, error } = useApplicantForm();
-  const navigate = useNavigate();
-
-  const makeRequest = async () => {
-    try {
-      const isLocalhost =
-        window?.location?.hostname === "localhost" ||
-        window?.location?.hostname === "127.0.0.1";
-      const url = isLocalhost
-        ? "http://localhost:4000/countries"
-        : "https://www.apicountries.com/countries";
-
-      const response = await axios.get(url);
-      const data = response?.data;
-
-      // Support multiple possible response shapes: array, { data: [] }, etc.
-      let items: any[] = [];
-      if (Array.isArray(data)) {
-        items = data;
-      } else if (Array.isArray(data?.data)) {
-        items = data.data;
-      } else {
-        console.warn("Unexpected countries response shape:", data);
-        setCountries([]);
-        return;
-      }
-
-      const countryNames = items
-        .map((c: any) => {
-          if (!c) return null;
-          if (typeof c === "string") return c;
-          return (
-            c?.name?.common ??
-            c?.name ??
-            c?.country ??
-            c?.country_name ??
-            c?.common_name ??
-            c?.official ??
-            null
-          );
-        })
-        .filter(Boolean)
-        .sort((a: string, b: string) => a.localeCompare(b));
-
-      setCountries(countryNames as string[]);
-    } catch (err: any) {
-      // Axios network errors in the browser often indicate CORS issues.
-      if (axios.isAxiosError(err) && err.code === "ERR_NETWORK") {
-        console.error(
-          "Network error while fetching countries. This may be a CORS issue in the browser:",
-          err.message
-        );
-      } else {
-        console.error("Error fetching countries:", err);
-      }
-      // Ensure component continues to render even when fetch fails
-      setCountries([]);
-    }
-  };
+  // Reusable input styling
+  const inputBase =
+    "border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600";
+  const focusStyle = "focus:border-[#FF7700] focus:ring-1 focus:ring-[#FF7700]";
+  const errorStyle = "border-red-500 ring-1 ring-red-500";
 
   useEffect(() => {
-    makeRequest();
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !(dropdownRef.current as any).contains(e.target)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await axios.get(
+          "https://restcountries.com/v3.1/all?fields=name"
+        );
+        const countryNames = response.data
+          .map((country: any) => country.name.common)
+          .sort();
+        setCountries(countryNames);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+    fetchCountries();
   }, []);
 
   const handleInputChange = (
@@ -176,7 +157,7 @@ const BursaryForm = () => {
       country: applicantForm.country,
       educationBackground: applicantForm.educationBackground,
       scholarshipReason: applicantForm.scholarshipReason,
-      scholarshipReason2: applicantForm.scholarshipReason,
+      scholarshipReason2: applicantForm.scholarshipReason2,
       canCommit1: applicantForm.canCommit1,
       canCommit2: applicantForm.canCommit2,
       canCommit3: applicantForm.canCommit3,
@@ -223,7 +204,7 @@ const BursaryForm = () => {
   };
 
   return (
-    <div className="md:py-20 md:px-24 p-6 dark:bg-[#040404] dark:text-white transition duration-400">
+    <div className="max-w-4xl mx-auto md:py-20 p-6 dark:bg-[#040404] dark:text-white transition duration-400">
       <h2 className="font-semibold md:text-4xl text-2xl text-center mb-8">
         SCHOLARSHIP APPLICATION
       </h2>
@@ -238,9 +219,9 @@ const BursaryForm = () => {
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">First Name</label>
                 <input
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
-                    formErrors.firstName ? "border-red-500" : ""
-                  }`}
+                  className={`${inputBase} ${
+                    formErrors.firstName ? errorStyle : focusStyle
+                  } w-full`}
                   type="text"
                   name="firstName"
                   value={applicantForm.firstName}
@@ -255,9 +236,9 @@ const BursaryForm = () => {
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">Last Name</label>
                 <input
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
-                    formErrors.lastName ? "border-red-500" : ""
-                  }`}
+                  className={`${inputBase} ${
+                    formErrors.lastName ? errorStyle : focusStyle
+                  } w-full`}
                   type="text"
                   name="lastName"
                   value={applicantForm.lastName}
@@ -272,9 +253,9 @@ const BursaryForm = () => {
               <div className="flex flex-col gap-2">
                 <label className="text-lg font-medium">Email</label>
                 <input
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
-                    formErrors.email ? "border-red-500" : ""
-                  }`}
+                  className={`${inputBase} ${
+                    formErrors.email ? errorStyle : focusStyle
+                  } w-full`}
                   type="email"
                   name="email"
                   value={applicantForm.email}
@@ -286,27 +267,63 @@ const BursaryForm = () => {
                   <p className="text-red-500 text-sm">{formErrors.email}</p>
                 )}
               </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-lg font-medium">Country</label>
-                <Select
-                  name="country"
-                  value={applicantForm.country}
-                  onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
-                    formErrors.country ? "border-red-500" : ""
-                  }`}
-                  required
-                >
-                  <option value="">Select a country</option>
-                  {countries.map((country) => (
-                    <option key={country} value={country}>
-                      {country}
-                    </option>
-                  ))}
-                </Select>
-                {formErrors.country && (
-                  <p className="text-red-500 text-sm">{formErrors.country}</p>
-                )}
+              <div ref={dropdownRef}>
+                <label className="block text-lg font-medium text-white mt-1 mb-1">
+                  Country
+                </label>
+                <div className="relative">
+                  <div
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className={`w-full px-3 py-2 rounded-md cursor-pointer flex justify-between items-center sm:text-sm ${
+                      formErrors.country ? errorStyle : "border border-gray-300"
+                    } bg-white h-11 text-gray-900 dark:bg-[#1a1a1a] dark:text-white`}
+                  >
+                    <span className="truncate">
+                      {applicantForm.country || "Select your country"}
+                    </span>
+                    <span
+                      className={`ml-2 transform transition-transform ${
+                        isDropdownOpen ? "rotate-180" : ""
+                      }`}
+                    >
+                      ▼
+                    </span>
+                  </div>
+
+                  {isDropdownOpen && (
+                    <div className="absolute z-10 w-full bg-white dark:bg-[#0b1220] mt-1 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 max-h-60 overflow-y-auto text-gray-900 dark:text-white">
+                      <input
+                        type="text"
+                        placeholder="Search..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className={`${inputBase} w-full border-b-0 rounded-b-none bg-white dark:bg-[#071026] text-sm`}
+                      />
+                      {filteredCountries.length ? (
+                        filteredCountries.map((country, index) => (
+                          <div
+                            key={index}
+                            onClick={() => {
+                              setApplicantForm((prev) => ({
+                                ...prev,
+                                country,
+                              }));
+                              setIsDropdownOpen(false);
+                              setSearch("");
+                            }}
+                            className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer text-sm"
+                          >
+                            {country}
+                          </div>
+                        ))
+                      ) : (
+                        <div className="px-3 py-2 text-gray-500 dark:text-gray-400 text-sm">
+                          No countries found
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -321,7 +338,7 @@ const BursaryForm = () => {
                 Educational Background (Field of Study or Work Experience)
               </label>
               <textarea
-                className="border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm h-32 dark:bg-[#1a1a1a] dark:border-gray-600"
+                className={`${inputBase} h-32 w-full ${focusStyle}`}
                 name="educationBackground"
                 value={applicantForm.educationBackground}
                 onChange={handleInputChange}
@@ -333,19 +350,19 @@ const BursaryForm = () => {
                 Do you have any experience with programming?
               </label>
               <div>
-                <Select
+                <select
                   name="canCommit1"
                   value={applicantForm.canCommit1}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
-                    formErrors.canCommit ? "border-red-500" : ""
+                  className={`${inputBase} w-full ${
+                    formErrors.canCommit ? errorStyle : focusStyle
                   }`}
                   required
                 >
                   <option value="">Choose</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
-                </Select>
+                </select>
               </div>
             </div>
             <div>
@@ -353,12 +370,12 @@ const BursaryForm = () => {
                 If you select yes, which languages do you use?
               </label>
               <div>
-                <Select
+                <select
                   name="canCommit2"
                   value={applicantForm.canCommit2}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
-                    formErrors.canCommit ? "border-red-500" : ""
+                  className={`${inputBase} w-full ${
+                    formErrors.canCommit ? errorStyle : focusStyle
                   }`}
                   required
                 >
@@ -367,7 +384,7 @@ const BursaryForm = () => {
                   <option value="R">R</option>
                   <option value="bash">Bash</option>
                   <option value="">None</option>
-                </Select>
+                </select>
               </div>
             </div>
           </div>
@@ -382,7 +399,7 @@ const BursaryForm = () => {
                   and bioinformatics data science engineer?
                 </label>
                 <textarea
-                  className="border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm h-32 dark:bg-[#1a1a1a] dark:border-gray-600"
+                  className={`${inputBase} h-32 w-full ${focusStyle}`}
                   name="scholarshipReason"
                   value={applicantForm.scholarshipReason}
                   onChange={handleInputChange}
@@ -395,7 +412,7 @@ const BursaryForm = () => {
                   how will it help you achieve your career or research goals?
                 </label>
                 <textarea
-                  className="border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm h-32 dark:bg-[#1a1a1a] dark:border-gray-600"
+                  className={`${inputBase} h-32 w-full ${focusStyle}`}
                   name="scholarshipReason2"
                   value={applicantForm.scholarshipReason2}
                   onChange={handleInputChange}
@@ -408,19 +425,19 @@ const BursaryForm = () => {
                   Can you commit to completing this 5-month intensive program
                   with hands-on projects and mentorship
                 </label>
-                <Select
+                <select
                   name="canCommit3"
                   value={applicantForm.canCommit3}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 dark:text-white ${
-                    formErrors.canCommit ? "border-red-500" : ""
+                  className={`${inputBase} w-full ${
+                    formErrors.canCommit ? errorStyle : focusStyle
                   }`}
                   required
                 >
                   <option value="">Choose</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
-                </Select>
+                </select>
                 {formErrors.canCommit && (
                   <p className="text-red-500 text-sm">{formErrors.canCommit}</p>
                 )}
@@ -433,8 +450,8 @@ const BursaryForm = () => {
                   name="hoursPerWeek"
                   value={applicantForm.hoursPerWeek}
                   onChange={handleInputChange}
-                  className={`border border-[#DFDFDF] p-2.5 rounded-lg placeholder:text-sm focus:outline-none dark:bg-[#1a1a1a] dark:border-gray-600 ${
-                    formErrors.email ? "border-red-500" : ""
+                  className={`${inputBase} w-full ${
+                    formErrors.email ? errorStyle : focusStyle
                   }`}
                   placeholder=""
                 />
@@ -466,7 +483,7 @@ const BursaryForm = () => {
                   checked={applicantForm.scholarshipAwareness}
                   onChange={handleInputChange}
                   className={`accent-[#FF7700] w-5 h-5 ${
-                    formErrors.scholarshipAwareness ? "border-red-500" : ""
+                    formErrors.scholarshipAwareness ? "ring-1 ring-red-500" : ""
                   }`}
                   required
                 />
@@ -488,7 +505,7 @@ const BursaryForm = () => {
                   checked={applicantForm.paymentAbility}
                   onChange={handleInputChange}
                   className={`accent-[#FF7700] w-5 h-5 ${
-                    formErrors.paymentAbility ? "border-red-500" : ""
+                    formErrors.paymentAbility ? "ring-1 ring-red-500" : ""
                   }`}
                   required
                 />
@@ -527,7 +544,7 @@ const BursaryForm = () => {
             <Link to="/">
               <button
                 type="button"
-                className="border border-[#FF7700] md:px-4 text-[14px] p-2 md:text-[16px] px-2.5 rounded-full md:p-2 hover:bg-orange-400 hover:text-white transition duration-300"
+                className={`border border-[#FF7700] px-6 py-2 text-[14px] rounded-full hover:bg-orange-400 hover:text-white transition duration-300 ${focusStyle}`}
               >
                 Back to Home
               </button>
@@ -536,7 +553,7 @@ const BursaryForm = () => {
             <button
               type="submit"
               disabled={isPending}
-              className={`bg-[#FF7700] rounded-full md:p-2.5 md:px-4 text-[14px] p-2 md:text-[16px] px-2.5 text-white hover:bg-orange-400 transition duration-300 ${
+              className={`bg-[#FF7700] px-6 py-2 rounded-full text-[14px] text-white hover:bg-orange-400 transition duration-300 shadow-sm ${
                 isPending ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >
