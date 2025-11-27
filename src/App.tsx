@@ -1,28 +1,32 @@
 // Top-level: lazy imports and Suspense
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import React, { useEffect, useState, Suspense, lazy } from "react";
-import './App.css';
-const Home = lazy(() => import('./pages/Home'));
-const About = lazy(() => import('./pages/About'));
-const MyLearning = lazy(() => import('./components/MyLearning'));
-const NotFound = lazy(() => import('./pages/NotFound'));
-const NothingToSee = lazy(() => import('./components/NothingToSee'));
-const Layout = lazy(() => import('./Layout/Layout'));
-const AppWrapper = lazy(() => import('./Layout/AppWrapper'));
-const WebinarLandingPage = lazy(() => import('./components/WebinarLandingPage'));
-const Courses = lazy(() => import('./pages/Courses'));
-const Landing = lazy(() => import('./pages/Landing'));
+import "./App.css";
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const MyLearning = lazy(() => import("./components/MyLearning"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const NothingToSee = lazy(() => import("./components/NothingToSee"));
+const Layout = lazy(() => import("./Layout/Layout"));
+const AppWrapper = lazy(() => import("./Layout/AppWrapper"));
+const WebinarLandingPage = lazy(
+  () => import("./components/WebinarLandingPage")
+);
+const Courses = lazy(() => import("./pages/Courses"));
+const Landing = lazy(() => import("./pages/Landing"));
 // Removed: const Form = lazy(() => import('./pages/Form'));
-const Program = lazy(() => import('./pages/Program'));
-const EventStart = lazy(() => import('./components/EventStart'));
+const Program = lazy(() => import("./pages/Program"));
+const EventStart = lazy(() => import("./components/EventStart"));
 const BursaryForm = lazy(() => import("./components/BursaryForm"));
-const Earn = lazy(() => import('./pages/Earn'));
-const Earn2 = lazy(() => import('./components/Earn'));
-const ProtectedRoute = lazy(() => import('./protectedRoute/ProtectedRoute'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-const SignUpPage = lazy(() => import('./pages/SignUpPage'));
-const ReferralPolicy = lazy(() => import('./pages/ReferralPolicy'));
-const UserContactAffiliateInfo = lazy(() => import('./pages/UserContactAffiliateInfo'));
+const Earn = lazy(() => import("./pages/Earn"));
+const Earn2 = lazy(() => import("./components/Earn"));
+const ProtectedRoute = lazy(() => import("./protectedRoute/ProtectedRoute"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const SignUpPage = lazy(() => import("./pages/SignUpPage"));
+const ReferralPolicy = lazy(() => import("./pages/ReferralPolicy"));
+const UserContactAffiliateInfo = lazy(
+  () => import("./pages/UserContactAffiliateInfo")
+);
 
 const router = createBrowserRouter([
   {
@@ -34,21 +38,21 @@ const router = createBrowserRouter([
           { path: "/", element: <Home /> },
           { path: "/about", element: <About /> },
           {
-            path: "/courses",
-            element: <Landing />
+            path: "/bioengineering",
+            element: <Landing />,
           },
           { path: "/my-learning", element: <MyLearning /> },
           {
             path: "/webinar",
-            element: <WebinarLandingPage />
+            element: <WebinarLandingPage />,
           },
           {
             path: "/event",
-            element: <Program />
+            element: <Program />,
           },
           {
-            path: '/earn-with-genomac',
-            element: <Earn />
+            path: "/earn-with-genomac",
+            element: <Earn />,
           },
 
           {
@@ -62,15 +66,17 @@ const router = createBrowserRouter([
 
           {
             path: "/referral-policy",
-            element: <ReferralPolicy />
+            element: <ReferralPolicy />,
           },
           {
             path: "/event",
-            element: <Landing
-            //  darkMode={darkMode} switchTheme={switchTheme}
-            />
-          }
-        ]
+            element: (
+              <Landing
+              //  darkMode={darkMode} switchTheme={switchTheme}
+              />
+            ),
+          },
+        ],
       },
       { path: "/login", element: <LoginPage /> },
       { path: "/sign-up", element: <SignUpPage /> },
@@ -84,22 +90,22 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />
+        element: <About />,
       },
       {
         path: "/bursary-form",
-        element: <BursaryForm />
+        element: <BursaryForm />,
       },
       {
         path: "*",
-        element: <NotFound />
+        element: <NotFound />,
       },
       {
-        path: '/webinar',
-        element: <WebinarLandingPage />
-      }
-    ]
-  }
+        path: "/webinar",
+        element: <WebinarLandingPage />,
+      },
+    ],
+  },
 ]);
 
 function App() {
@@ -122,11 +128,7 @@ function App() {
     setDarkMode((prev) => !prev);
   };
 
-  return (
-
-    <RouterProvider router={router} />
-
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
