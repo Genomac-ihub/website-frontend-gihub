@@ -188,7 +188,7 @@ const BursaryForm = () => {
         // Using navigate for safer redirect
         setTimeout(() => {
           window.open(
-            "https://chat.whatsapp.com/BRv9WFnVjDIC4Np6dkKPlF?mode=ac_t",
+            "https://chat.whatsapp.com/KqU8e7lmQDX1FzkwP5tVBd",
             "_blank"
           );
         }, 1000);
