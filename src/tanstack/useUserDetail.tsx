@@ -19,7 +19,7 @@ interface ApiResponse {
 
 export const getUserDetail = async (): Promise<User> => {
   try {
-    const response = await apiClient.get<ApiResponse>(`api/user-detail`);
+    const response = await apiClient.get<ApiResponse>(`/api/user-detail`);
     console.log(response.data.data);
     return response.data.data; // this is the User object
   } catch (error) {

@@ -26,7 +26,7 @@ const SignUpPage = () => {
     <div className="w-[100%] min-h-[100svh] sm:w-[500px] mx-auto flex items-center justify-center transition-all">
       <div className="w-[100%] h-[100%] flex justify-center items-center flex-col sm:block space-y-8 p-6 bg-white">
         <div className="text-center">
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#ff7700]">G-IHUB</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#ff7700]">G-iHUB</h1>
           <p className="mt-2 text-sm sm:text-base text-gray-600">Create your account</p>
         </div>
 
@@ -121,14 +121,12 @@ const SignUpPage = () => {
           <button
             type="button"
             onClick={() => {
+              const baseUrl = import.meta.env.VITE_BASE_URL || "https://offficial-website-backend-production.genomac.io";
               const redirectUrl = redirectPath
-                ? `https://offficial-website-backend-production.genomac.io/auth/google?path=${encodeURIComponent(redirectPath)}`
-                : `https://offficial-website-backend-production.genomac.io/auth/google`;
+                ? `${baseUrl}/auth/google?path=${encodeURIComponent(redirectPath)}`
+                : `${baseUrl}/auth/google`;
               window.location.href = redirectUrl;
             }}
-            // onClick={() => {
-            //   window.location.href = 'https://offficial-website-backend-production.genomac.io/auth/google';
-            // }}
             className="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff7700] cursor-pointer transition-colors"
           >
             <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24" width="24" height="24">

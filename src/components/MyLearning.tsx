@@ -84,7 +84,7 @@ const MyLearning = () => {
                                 >
                                     {selectedVideo.isAvailable && (
                                         <>
-                                            G-IHUB
+                                            G-iHUB
                                         </>
                                     )}
                                 </span>

@@ -5,113 +5,10 @@ import img3 from "../assets/texture.svg";
 import { Aperture, Component, Command, Hexagon } from "lucide-react";
 import PlatformCard from "../components/PlatformCard";
 import AOS from "aos";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import "aos/dist/aos.css";
-import { useState } from "react";
-import useUserDetail from "../tanstack/useUserDetail";
-import { useLocation } from "react-router-dom";
-import useHandleModal from "../zustard/useHandleModal";
-import useLogout from "../tanstack/useLogout";
-
-
-
 
 const Home = () => {
-
-  const [openNav, setOpenNav] = useState(false);
-  let hoverTimeout: ReturnType<typeof setTimeout> | null = null;
-
-  const handleMouseEnter = () => {
-    if (hoverTimeout) clearTimeout(hoverTimeout);
-    setIsDropdownOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    hoverTimeout = setTimeout(() => {
-      setIsDropdownOpen(false);
-    }, 100);
-  };
-
-  const { data: userData, isPending, isError, isLoading } = useUserDetail();
-  const { mutate: logout } = useLogout();
-  console.log(isError);
-  console.log(isPending);
-  console.log(userData);
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [isStuck, setIsStuck] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const navbarRef = useRef<HTMLDivElement>(null);
-  const sentinelRef = useRef<HTMLDivElement>(null);
-
-  const { setTheClickedModal } = useHandleModal();
-  const { pathname } = useLocation();
-  console.log(pathname);
-
-  const toggleMenu = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      navbarRef.current &&
-      !navbarRef.current.contains(event.target as Node)
-    ) {
-      closeMenu();
-    }
-  };
-
-  const handleScroll = () => {
-    closeMenu();
-    setIsScrolled(window.scrollY > 50);
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsStuck(!entry.isIntersecting);
-      },
-      { threshold: 0 },
-    );
-
-    if (sentinelRef.current) observer.observe(sentinelRef.current);
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "unset";
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    const isDesktop = window.innerWidth >= 768;
-    if (isDesktop) {
-      document.body.style.marginLeft = openNav ? "18rem" : "0";
-    }
-    return () => {
-      if (isDesktop) document.body.style.marginLeft = "0";
-    };
-  }, [openNav]);
-
   useEffect(() => {
     AOS.init({
       duration: 500, // animation duration in ms
@@ -178,8 +75,7 @@ const Home = () => {
 
         {/* Background Decorative Wavy Image - Pushed to the bottom */}
         <div className="text-center text-[2.5rem] sm:text-4xl md:text-5xl lg:text-[4rem] mx-auto font-semibold z-10 leading-[1.1] md:leading-[1.1] max-w-5xl text-[#1A1A1A] tracking-[-0.02em]">
-          Building Africa's Innovation Eco <br />
-          system{" "}
+          Building Africa's Innovation Eco <br />system{" "}
           <span className="font-light font-['Instrument_Serif'] italic text-[2.5rem] sm:text-3xl md:text-5xl lg:text-[4.5rem]">
             Empower{" "}
           </span>
@@ -193,16 +89,9 @@ const Home = () => {
         </p>
 
         <div className="z-10 flex flex-row items-center justify-center mt-10 gap-4">
-          <Link
-            to={"/sign-up"}
-            onClick={() => {
-              setTheClickedModal("signUp");
-              closeMenu();
-            }}
-            className="bg-[#FC350B] hover:bg-[#FF6B35] transition-colors duration-300 py-3 px-8 rounded-full text-white shadow-md flex items-center text-[1rem] sm:text-[1rem] font-medium"
-          >
+          <button className="bg-[#FC350B] hover:bg-[#FF6B35] transition-colors duration-300 py-3 px-8 rounded-full text-white shadow-md flex items-center text-[1rem] sm:text-[1rem] font-medium">
             Explore platform
-          </Link>
+          </button>
         </div>
 
         {/* Wavy Img */}
@@ -215,7 +104,9 @@ const Home = () => {
         </div>
       </section>
 
-      <section data-aos="slide-up" className="bg-[#F6F5EF]">
+      <section
+        data-aos="slide-up"
+        className="bg-[#F6F5EF]">
         <section className="md:px-16">
           <section
             data-aos="slide-up"
@@ -268,14 +159,11 @@ const Home = () => {
         >
           <div className="mb-10">
             <p className="text-sm text-orange-500 mb-4">
-              <span className="italic">//</span> What we do{" "}
-              <span className="italic">//</span>
+              <span className="italic">//</span> What we do <span className="italic">//</span>
             </p>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-4">
-              <h2
-                className="text-3xl md:text-[2.5rem] leading-15 font-bold text-[#0D1D2C] md:w-1/2"
-                style={{ fontFamily: "Fraunces" }}
-              >
+              <h2 className="text-3xl md:text-[2.5rem] leading-15 font-bold text-[#0D1D2C] md:w-1/2"
+              style={{fontFamily: "Fraunces"}}>
                 We build the infrastructure <br className="hidden md:block" />
                 Innovations runs on
               </h2>
@@ -454,8 +342,7 @@ const Home = () => {
       <section className="bg-[#05151C] py-20 px-16">
         <div className="max-w-7xl mx-auto text-center" data-aos="fade-up">
           <p className="text-[#A7D7C8] text-xs sm:text-sm uppercase tracking-[0.2em] mb-4">
-            <span className="italic">//</span> Impact by number{" "}
-            <span className="italic">//</span>
+            <span className="italic">//</span> Impact by number <span className="italic">//</span>
           </p>
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold font-['Fraunces'] mb-16">
             Growing the African innovation economy

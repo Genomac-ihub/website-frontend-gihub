@@ -4,26 +4,20 @@ import React, { useEffect, useState, Suspense, lazy } from "react";
 import "./App.css";
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
-const MyLearning = lazy(() => import("./components/MyLearning"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const NothingToSee = lazy(() => import("./components/NothingToSee"));
 const Layout = lazy(() => import("./Layout/Layout"));
 const AppWrapper = lazy(() => import("./Layout/AppWrapper"));
-const WebinarLandingPage = lazy(
-  () => import("./components/WebinarLandingPage")
-);
-const Courses = lazy(() => import("./pages/Courses"));
-const Landing = lazy(() => import("./pages/Landing"));
-// Removed: const Form = lazy(() => import('./pages/Form'));
+// const Landing = lazy(() => import("./pages/Landing"));
 const Program = lazy(() => import("./pages/Program"));
-const EventStart = lazy(() => import("./components/EventStart"));
-const BursaryForm = lazy(() => import("./components/BursaryForm"));
-const Earn = lazy(() => import("./pages/Earn"));
-const Earn2 = lazy(() => import("./components/Earn"));
+const Platform = lazy(() => import("./pages/Platform"));
+const Research = lazy(() => import("./pages/Research"));
+const Contact = lazy(() => import("./pages/Contact"));
 const ProtectedRoute = lazy(() => import("./protectedRoute/ProtectedRoute"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
-const ReferralPolicy = lazy(() => import("./pages/ReferralPolicy"));
+const MyLearning = lazy(() => import("./components/MyLearning"));
+// const ReferralPolicy = lazy(() => import("./pages/ReferralPolicy"));
 const UserContactAffiliateInfo = lazy(
   () => import("./pages/UserContactAffiliateInfo")
 );
@@ -38,44 +32,52 @@ const router = createBrowserRouter([
           { path: "/", element: <Home /> },
           { path: "/about", element: <About /> },
           {
-            path: "/bioengineering",
-            element: <Landing />,
+            path: "/platform",
+            element: <Platform />,
           },
           { path: "/my-learning", element: <MyLearning /> },
           {
-            path: "/webinar",
-            element: <WebinarLandingPage />,
+            path: "/program",
+            element: <Program />,
+          },
+          {
+            path: "/research",
+            element: <Research />,
+          },
+          {
+            path: "/contact",
+            element: <Contact />,
           },
           {
             path: "/event",
             element: <Program />,
           },
-          {
-            path: "/earn-with-genomac",
-            element: <Earn />,
-          },
+          // {
+          //   path: "/earn-with-genomac",
+          //   element: <Earn />,
+          // },
 
-          {
-            path: "/earn",
-            element: (
-              <ProtectedRoute>
-                <Earn2 />
-              </ProtectedRoute>
-            ),
-          },
+          // {
+          //   path: "/earn",
+          //   element: (
+          //     <ProtectedRoute>
+          //       <Earn2 />
+          //     </ProtectedRoute>
+          //   ),
+          // },
 
-          {
-            path: "/referral-policy",
-            element: <ReferralPolicy />,
-          },
-          {
-            path: "/event",
-            element: (
-              <Landing
-              //  darkMode={darkMode} switchTheme={switchTheme}
-              />
-            ),
-          },
+          // {
+          //   path: "/referral-policy",
+          //   element: <ReferralPolicy />,
+          // },
+          // {
+          //   path: "/event",
+          //   element: (
+          //     <Landing
+          //     //  darkMode={darkMode} switchTheme={switchTheme}
+          //     />
+          //   ),
+          // },
         ],
       },
       { path: "/login", element: <LoginPage /> },
@@ -89,20 +91,8 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/bursary-form",
-        element: <BursaryForm />,
-      },
-      {
         path: "*",
         element: <NotFound />,
-      },
-      {
-        path: "/webinar",
-        element: <WebinarLandingPage />,
       },
     ],
   },

@@ -5,10 +5,14 @@ interface apiClientType {
   withCredentials: boolean,
 }
 
-let apiClientObj: apiClientType = {
-  baseURL: import.meta.env.VITE_BASE_URL,
-  withCredentials: true,
+let rawBaseURL = import.meta.env.VITE_BASE_URL || "";
+if (rawBaseURL.endsWith("/")) {
+  rawBaseURL = rawBaseURL.slice(0, -1);
+}
 
+let apiClientObj: apiClientType = {
+  baseURL: rawBaseURL,
+  withCredentials: true,
 };
 
 const apiClient = axios.create(apiClientObj)

@@ -18,7 +18,7 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
             className="h-10 w-10 rounded-full border-4 border-orange-500 border-t-transparent animate-spin"
             aria-label="Loading"
           ></div>
-          <p className="text-sm text-gray-600 animate-pulse">G-ihub's security checkpoint...</p>
+          <p className="text-sm text-gray-600 animate-pulse">G-iHub's security checkpoint...</p>
         </div>
       </div>
     );

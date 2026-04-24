@@ -119,16 +119,16 @@ export default function Navbar() {
           pathname === "/my-learning" || pathname === "/earn"
             ? "text-black bg-black  border-b-neutral-500"
             : isScrolled
-            ? "bg-white/80 backdrop-blur-md border-[1px] border-gray-200/50 shadow-lg"
-            : "border-[1px] border-gray-200 bg-[#F9F7F7] shadow-3xs "
+              ? "bg-white/80 backdrop-blur-md border-[1px] border-gray-200/50 shadow-lg"
+              : "border-[1px] border-gray-200 bg-[#F9F7F7] shadow-3xs "
         }
         w-full lg:sticky lg:top-0 
         ${
           isStuck
             ? "lg:w-full lg:rounded-none shadow-md"
             : pathname !== "/my-learning" && pathname !== "/earn"
-            ? "lg:w-[89%] lg:mx-auto lg:my-10 lg:rounded-3xl"
-            : ""
+              ? "lg:w-[89%] lg:mx-auto lg:my-10 lg:rounded-3xl"
+              : ""
         }`}
       >
         <div
@@ -158,8 +158,8 @@ export default function Navbar() {
                 {(pathname === "/my-learning" || pathname === "/earn") && (
                   <i className="bi bi-list text-xl text-white"></i>
                 )}
-                <span className="sr-only text-white">Home</span>
-                <img src={logo} alt="Logo" className="w-[4rem] md:w-[5rem]" />
+                <Link to={"/"} className="w-[4rem] md:w-[5rem]"><span className="sr-only text-white">Home</span>
+                <img src={logo} alt="Logo" className="w-[4rem] md:w-[5rem]" /></Link>
               </div>
             </div>
             {openNav && (
@@ -173,7 +173,7 @@ export default function Navbar() {
               {pathname === "/my-learning" &&
               userData?.tags === "computaional-biology" ? (
                 <h1>
-                  Hi {userData?.firstName}, G-IHUb welcomes you to{" "}
+                  Hi {userData?.firstName}, G-iHub welcomes you to{" "}
                   <span className="text-orange-400">Computational Biology</span>
                 </h1>
               ) : (
@@ -185,13 +185,40 @@ export default function Navbar() {
                         : "text-black"
                     }`}
                   >
-                    <li>
+                    {/* <li>
                       <Link
                         to="/"
                         className="transition hover:text-gray-500/75"
                         onClick={closeMenu}
                       >
                         Home
+                      </Link>
+                    </li> */}
+                    <li>
+                      <Link
+                        to="/program"
+                        className="transition hover:text-gray-500/75"
+                        onClick={closeMenu}
+                      >
+                        Program
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/platform"
+                        className="transition hover:text-gray-500/75"
+                        onClick={closeMenu}
+                      >
+                        Platform
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/research"
+                        className="transition hover:text-gray-500/75"
+                        onClick={closeMenu}
+                      >
+                        Research
                       </Link>
                     </li>
                     <li>
@@ -201,33 +228,6 @@ export default function Navbar() {
                         onClick={closeMenu}
                       >
                         About
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/bioengineering"
-                        className="transition hover:text-gray-500/75"
-                        onClick={closeMenu}
-                      >
-                        Courses
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/event"
-                        className="transition hover:text-gray-500/75"
-                        onClick={closeMenu}
-                      >
-                        Event
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/earn-with-genomac"
-                        className="transition hover:text-gray-500/75"
-                        onClick={closeMenu}
-                      >
-                        Earn with genomac
                       </Link>
                     </li>
                   </ul>
@@ -264,9 +264,27 @@ export default function Navbar() {
                   >
                     {pathname === "/my-learning" || pathname === "/earn"
                       ? [
+                          // {
+                          //   link: "/",
+                          //   type: "Home",
+                          //   icon: "",
+                          //   color: "text-gray-700",
+                          // },
                           {
-                            link: "/",
-                            type: "Home",
+                            link: "/program",
+                            type: "Program",
+                            icon: "",
+                            color: "text-gray-700",
+                          },
+                          {
+                            link: "/platform",
+                            type: "Platform",
+                            icon: "",
+                            color: "text-gray-700",
+                          },
+                          {
+                            link: "/research",
+                            type: "Research",
                             icon: "",
                             color: "text-gray-700",
                           },
@@ -276,24 +294,24 @@ export default function Navbar() {
                             icon: "",
                             color: "text-gray-700",
                           },
-                          {
-                            link: "/bioengineering",
-                            type: "Courses",
-                            icon: "bi bi-globe",
-                            color: "text-gray-700",
-                          },
-                          {
-                            link: "/event",
-                            type: "Events",
-                            icon: "bi bi-calendar-event",
-                            color: "text-gray-700",
-                          },
-                          {
-                            link: "/earn-with-genomac",
-                            type: "Program",
-                            icon: "bi bi-journal-text",
-                            color: "text-gray-700",
-                          },
+                          // {
+                          //   link: "/bioengineering",
+                          //   type: "Courses",
+                          //   icon: "bi bi-globe",
+                          //   color: "text-gray-700",
+                          // },
+                          // {
+                          //   link: "/event",
+                          //   type: "Events",
+                          //   icon: "bi bi-calendar-event",
+                          //   color: "text-gray-700",
+                          // },
+                          // {
+                          //   link: "/earn-with-genomac",
+                          //   type: "Program",
+                          //   icon: "bi bi-journal-text",
+                          //   color: "text-gray-700",
+                          // },
                           {
                             link: "",
                             type: "Log out",
@@ -322,29 +340,47 @@ export default function Navbar() {
                             color: "text-gray-700",
                           },
                           {
+                            link: "/program",
+                            type: "Program",
+                            icon: "",
+                            color: "text-gray-700",
+                          },
+                          {
+                            link: "/platform",
+                            type: "Platform",
+                            icon: "",
+                            color: "text-gray-700",
+                          },
+                          {
+                            link: "/research",
+                            type: "Research",
+                            icon: "",
+                            color: "text-gray-700",
+                          },
+                          {
                             link: "/about",
                             type: "About",
                             icon: "bi bi-info-circle",
                             color: "text-gray-700",
                           },
-                          {
-                            link: "/bioengineering",
-                            type: "Courses",
-                            icon: "bi bi-globe",
-                            color: "text-gray-700",
-                          },
-                          {
-                            link: "/event",
-                            type: "Events",
-                            icon: "bi bi-calendar-event",
-                            color: "text-gray-700",
-                          },
-                          {
-                            link: "/earn-with-genomac",
-                            type: "Earn with genomac",
-                            icon: "bi bi-cash",
-                            color: "text-gray-700",
-                          },
+                          // {
+                          //   link: "/bioengineering",
+                          //   type: "Courses",
+                          //   icon: "bi bi-globe",
+                          //   color: "text-gray-700",
+                          // },
+                          // {
+                          //   link: "/event",
+                          //   type: "Events",
+                          //   icon: "bi bi-calendar-event",
+                          //   color: "text-gray-700",
+                          // },
+                          // {
+                          //   link: "/earn-with-genomac",
+                          //   type: "Earn with genomac",
+                          //   icon: "bi bi-cash",
+                          //   color: "text-gray-700",
+                          // },
                           {
                             link: "",
                             type: "Log out",
@@ -462,29 +498,47 @@ export default function Navbar() {
                     desc: "Back to homepage",
                   },
                   {
+                    to: "/program",
+                    label: "Program",
+                    icon: "🎓",
+                    desc: "Explore available programs",
+                  },
+                  {
+                    to: "/platform",
+                    label: "Platform",
+                    icon: "📚",
+                    desc: "Browse our platforms",
+                  },
+                  {
+                    to: "/research",
+                    label: "Research",
+                    icon: "🔍",
+                    desc: "View our research",
+                  },
+                  {
                     to: "/about",
                     label: "About",
                     icon: "ℹ️",
                     desc: "Learn more about us",
                   },
-                  {
-                    to: "/bioengineering",
-                    label: "Courses",
-                    icon: "📚",
-                    desc: "Browse all courses",
-                  },
-                  {
-                    to: "/event",
-                    label: "Event",
-                    icon: "📅",
-                    desc: "See upcoming events and workshops",
-                  },
-                  {
-                    to: "/earn-with-genomac",
-                    label: "Program",
-                    icon: "🎓",
-                    desc: "Explore available programs",
-                  },
+                  // {
+                  //   to: "/bioengineering",
+                  //   label: "Courses",
+                  //   icon: "📚",
+                  //   desc: "Browse all courses",
+                  // },
+                  // {
+                  //   to: "/event",
+                  //   label: "Event",
+                  //   icon: "📅",
+                  //   desc: "See upcoming events and workshops",
+                  // },
+                  // {
+                  //   to: "/earn-with-genomac",
+                  //   label: "Earn with genomac",
+                  //   icon: "🎓",
+                  //   desc: "Explore available programs",
+                  // },
                 ].map(({ to, label, icon, desc }, index) => (
                   <li
                     key={to}

@@ -47,7 +47,7 @@ const VerificationPage = () => {
     <div className="w-[400px] flex items-center justify-center">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-[#ff7700]">G-IHUB</h1>
+          <h1 className="text-4xl font-bold text-[#ff7700]">G-iHUB</h1>
           <p className="mt-2 text-gray-600">Verify your account</p>
         </div>
 

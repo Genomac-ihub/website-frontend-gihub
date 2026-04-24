@@ -1,302 +1,351 @@
-import rafiki from "../assets/image/rafiki.png"
-import eclipse from "../assets/gihub-eclipse.png"
-import iconlove from "../assets/image/Icon-love.png"
-import blueIcon from "../assets/purple-heart.png"
-import deepBlueIcon from "../assets/deepBlueIcon.png"
-import PurpleIcon from "../assets/purpleIcon.png"
-import PinkIcon from "../assets/pinkIcon.png"
-import { Check } from 'lucide-react';
-import instructor from "../assets/image/guy.png"
-import bio from "../assets/GIHUB BIOINFORMATICS APP BUILDING DESIGN.jpg"
-import GlowButton from "../components/GlowButton"
-import { Link } from "react-router-dom"
-import exlipse from "../assets/Elipse.png"
-import ball from "../assets/Ellipse 176.png"
-import ball2 from "../assets/Ellipse 177.png"
-const Program = () => {
+import { useState, useEffect, type ReactNode } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Clock, Users, Globe, Check, Send } from "lucide-react";
 
-    const courseData = [
-        {
-            title: "Python fundamentals for bio/health apps",
-            desc: "Learn the core Python skills you need to analyze biological and health data effectively.Ç"
-        },
-        {
-            title: "How to handle biological sequence data (FASTA, CSV)",
-            desc: "Practice reading, cleaning, and working with real biological datasets in common formats."
-        },
-        {
-            title: "Build interactive web tools with Streamlit",
-            desc: "Turn your scripts into simple, user-friendly apps that others can interact with."
-        },
-        {
-            title: "Connect your code to real-world biotech use cases",
-            desc: "See how coding skills directly apply to solving problems in biology and healthcare."
-        },
-        {
-            title: "Deploy your mini bioinformatics apps to share with others",
-            desc: "Learn how to publish your tools online so anyone can try them out."
-        },
-        {
-            title: "How to handle biological sequence data (FASTA, CSV)",
-            desc: "Practice reading, cleaning, and working with real biological datasets in common formats."
-        }
-    ]
-    const features = [
-        'Analytics',
-        'AI suggest text',
-        'Content tracking',
-        'API access',
-        'Chat support'
-    ];
-
-    const instructorsSocialMediaLink = [
-        {
-            linkden: "https://www.linkedin.com/in/terkuma-saaondo-2201521a0"
-        }
-    ]
-
-
-    const everyOne = [
-        {
-            icon: blueIcon,
-            bg: "#15FFFF33",
-            desc: "Biology, Biotech, and Computational Science Students"
-        },
-        {
-            icon: deepBlueIcon,
-            bg: "#1F67F533",
-            desc: "Researchers looking to build analysis tools"
-        },
-        {
-            icon: PurpleIcon,
-            bg: "#692BF833",
-            desc: "Researchers looking to build analysis tools"
-        },
-        {
-            icon: PinkIcon,
-            bg: "#FF0CDA33",
-            desc: "Anyone eager to build tools, not just use them"
-        }
-    ]
-    return (
-        <div className="">
-            <img src={ball} className="fixed top-0  z-[-10] " />
-            <img src={ball2} className="fixed top-0  z-[-10] -right-10 rounded-full" />
-            <section className="flex relative  flex-col items-center justify-center pt-30  md:pt-40 lg:pt-19 overflow-hidden ">
-                <GlowButton desc="Cohort 1 filled 3x faster than expected" />
-
-                <div className="px-4 md:px-10 ">
-                    <div
-                        className="text-[calc(1.5rem+2vw)]  mx-auto mt-6 lg:mt-12 z-10 text-center leading-[calc(2rem+2vw)] text-[#0D0D0D] max-w-3xl font-bold"
-                    >
-                        International Computational Biology and Bio-Innovation Bootcamp. 
-                    </div>
-                    <p className="text-center md:mx-auto z-0 mt-5 md:mt-5 sm:text-base text-[.8rem] text-[#404040] font-normal max-w-xl px-2 opacity-70">
-                        Build your first Bioinformatics app
-                    </p>
-
-                    <div className="flex sm:flex-row gap-3 sm:gap-4 md:justify-center items-center w-full px-2 sm:px-0 mt-[40px]">
-                        {/* Get Started */}
-                        <Link
-                            to="/bursary-form"
-                            className="gap-3 mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500  py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-white shadow-md flex items-center text-[.9rem]">
-                            92% Bursary Waiver Available
-                        </Link>
-
-                    </div>
-                </div>
-                <div className="mt-20">
-                    <img
-                        src={bio}
-                        alt="Profile"
-                        className="mx-auto w-[90%] max-w-2xl sm:w-full h-auto rounded-3xl shadow-lg object-cover"
-                    />
-
-                </div>
-                <img src={exlipse} className="absolute bottom-0 z-[-10] " />
-            </section>
-
-            <section className="flex max-w-7xl max-sm:flex-col px-2 gap-10 justify-around items-center mx-auto mt-[100px] md:mt-[200px]">
-                <div className="w-[100%] md:w-[50%] flex flex-col">
-                    <div className="flex font-bold text-[1.5rem] max-sm:text-center flex-col md:text-[2.25rem] md:w-[450px]">
-                        <h2>All what you need to know </h2>
-                        <h2>(Course Overview)</h2>
-                    </div>
-                    <div className="flex flex-col max-md:text-center items-start px-2">
-                        <div className="mt-10 text-[#404040] text-[.8rem] md:text-base md:leading-6 space-y-3 md:w-[90%]">
-                            <h2>Learn how to build real-world bioinformatics tools using Python and Streamlit without needing advanced coding experience. This short-term course takes you from zero to launching your first simple app for genomics, biomedical data analysis, or molecular diagnostics.
-                            </h2>
-                        </div>
-                        <div className="border-[1px] border-gray-200 w-[100%] mt-[30px] mb-[20px] "></div>
-                        <div className="text-[#404040] max-md:text-center md:w-[90%] text-[.8rem] md:text-base md:leading-6 space-y-3 ">
-                            <h2>A beginner-friendly journey that shows you how to design, code, and deploy simple bioinformatics apps for genomics, biomedical data, and diagnostics, all using Python and Streamlit..</h2>
-                        </div>
-                        <div className="mt-[30px] md:mt-[60px] max-md:mx-auto">
-                            {/* Get Started */}
-                            <Link to="/bursary-form" className="gap-3 mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500  py-2 cursor-pointer px-4 sm:py-3 sm:px-8 rounded-full text-white shadow-md flex items-center text-[.9rem]">
-                                Get started
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="md:w-[40%] ">
-                    <img src={eclipse} className="w-[100%] h-auto" />
-                </div>
-            </section>
-
-            <section className=" bg-[#FAFAFA] py-20 flex flex-col gap-20 mt-[100px] px-6">
-                <div className="flex flex-col items-center gap-5" >
-                    <p className='text-center sm:w-[70%] md:w-[50%]  uppercase text-[.8rem] mx-auto text-[#FF7700] font-semibold text-sm leading-5 tracking-[1px]'>Why this course</p>
-                    <p className='leading-[2.5rem] text-center text-[#171717] font-bold md:w-[35%] text-[2rem]'>What you will learn and why it works fast.</p>
-                </div>
-                <div className="flex flex-wrap max-w-7xl mx-auto gap-y-10 ">
-                    {
-                        courseData.map((course, index) => (
-
-                            <div key={index} className="flex flex-col max-w-6xl mx-auto md:w-[18rem] lg:w-[24rem] h-auto rounded-md p-5 md:gap-5 bg-white shadow-md">
-                                <img src={iconlove} className="w-[50px] h-auto" />
-                                <div className="w-[90%] flex flex-col gap-8">
-                                    <h1 className="text-[1.1rem] font-semibold">{course.title}</h1>
-                                    <p className="text-[#737373]">{course.desc}</p>
-                                </div>
-                            </div>
-
-                        ))
-                    }
-                </div>
-            </section>
-
-            <section className="py-20 mx-auto flex flex-col justify-center items-center gap-18 mt-[100px] px-6 ">
-                <div className="flex flex-col items-center gap-5" >
-                    <p className='leading-[2.5rem] text-center text-[#171717] font-bold md:w-[70%] text-[2rem]'>This isn’t for everyone.{" "}It’s for you.</p>
-                </div>
-                <div className="flex flex-wrap mx-auto gap-x-10 max-w-[75rem] justify-between gap-y-10">
-                    {
-                        everyOne.map((item, index) => (
-                            <div key={index} style={{ backgroundColor: item.bg }} className={`flex flex-col gap-5 rounded-md p-4 w-[100%] sm:w-[48%]`}>
-                                <img src={item.icon} className="w-[40px] h-auto" />
-                                <p className="font-bold">{item.desc}</p>
-                            </div>
-                        ))
-                    }
-                </div>
-
-                <div className="flex flex-col items-center mt-[20px] justify-center  w-full max-w-[76rem] px-8 py-6 md:py-10 lg:py-14 h-auto md:h-[23.75rem] rounded-md bg-gradient-to-r from-[#0DFFB0] to-[#F5E200] text-center space-y-4 sm:space-y-6">
-                    <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
-                        Total Bonus Value:<span className="text-[#15B097]">{" "}$1,000</span>
-                    </h1>
-
-                    <h2 className="text-base sm:text-lg md:text-xl font-semibold opacity-50">
-                        Your investment today
-                    </h2>
-
-                    <div className="flex flex-col sm:flex-row sm:justify-between text-lg sm:text-xl font-medium gap-1 w-[20%]">
-                        <h2 className="text-[2rem] line-through">$1000</h2>
-                        <h2 className="text-[#15B097] text-[2rem] font-bold">$80</h2>
-                    </div>
-
-                    <Link to="/bursary-form" className="gap-3 cursor-pointer mx-auto bg-gradient-to-br from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 py-2 px-4 rounded-full text-white shadow-md flex items-center text-sm sm:text-base font-medium">
-                        Yes I want it before the door closes
-                    </Link>
-
-                    <div className="text-sm sm:text-base opacity-60 font-medium">
-                        92% discount available to 30 persons
-                    </div>
-                </div>
-            </section>
-
-            <section className="bg-[#FAFAFA] ">
-                <div className="max-w-6xl mx-auto px-6 py-8 " >
-                    {/* Promotional banner */}
-                    <div className=" rounded-lg p-6 mb-8 ">
-                        <div className="flex flex-col lg:flex-row gap-40 lg:items-center lg:justify-between">
-                            <div className="flex-1">
-                                <p className="text-[#FF7700] font-medium mb-3">
-                                    92% Bursary Waiver available for 30 person
-                                </p>
-                                <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                                    Become a Certified Bioinformatics
-                                </h1>
-                                <p className="text-gray-600 mb-6">
-                                    Certificate of Participation and certificate of innovation (for those
-                                    who complete and present a working tool).
-                                </p>
-                                <Link to="/bursary-form" className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-full transition-colors">
-                                    Apply for 92% Bursary Waiver
-                                </Link>
-                            </div>
-
-                            <div className="lg:w-80">
-                                <div className="bg-white rounded-lg p-4 shadow-sm">
-                                    <h3 className="font-semibold text-gray-800 mb-4">SPECIAL FEATURES</h3>
-                                    <div className="space-y-3">
-                                        {features.map((feature, index) => (
-                                            <div key={index} className="flex items-center gap-3">
-                                                <Check className="w-5 h-5 text-orange-500 flex-shrink-0" />
-                                                <span className="text-gray-700">{feature}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="bg-white">
-                <div className="max-w-5xl mx-auto mt-8 px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
-
-                        <div>
-                            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 text-center lg:text-left">
-                                Instructor's Statement
-                            </h2>
-                            <p className="text-gray-600 leading-relaxed text-sm sm:text-base text-center lg:text-left">
-                                This course is about showing you how easy it is to turn a simple
-                                biological idea into a tool people can use. With just Python and Streamlit,
-                                you'll build something real and you'll walk away empowered to build more.
-                            </p>
-                        </div>
-
-
-                        <div className="flex justify-center">
-                            <div className="text-center lg:text-left">
-                                <div className="w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg mb-4 overflow-hidden mx-auto lg:mx-0">
-                                    <img
-                                        src={instructor}
-                                        alt="Saando Terkuma"
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-1">
-                                    Saando Terkuma
-                                </h3>
-                                <p className="text-gray-600 mb-3 text-sm sm:text-base">
-                                    Bioinformatics Instructor
-                                </p>
-                                <div className="flex justify-center lg:justify-start gap-2">
-                                    <a
-                                        href="#"
-                                        className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-                                        aria-label="Twitter"
-                                    >
-                                        <i className="bi bi-twitter-x text-gray-700"></i>
-                                    </a>
-                                    <a
-                                        href="https://www.linkedin.com/in/terkuma-saaondo-2201521a0"
-                                        className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-                                        aria-label="LinkedIn"
-                                    >
-                                        <i className="bi bi-linkedin text-blue-600"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    )
+interface ProgramContent {
+  badge: string;
+  title: string;
+  subtitle: string;
+  duration: string;
+  cohort: string;
+  format: string;
+  description: string;
+  bullets: string[];
+  callout: ReactNode;
+  comingSoon?: boolean;
 }
 
-export default Program
+const PROGRAM_DATA: Record<string, ProgramContent> = {
+  "Founder Execution Challenge": {
+    badge: "Program 01",
+    title: "Founder Execution Challenge",
+    subtitle:
+      "A competitive program that surfaces Africa's most promising early-stage startup ideas through structured challenge rounds.",
+    duration: "8 weeks",
+    cohort: "Up to 50 teams",
+    format: "Online + in-person",
+    description:
+      "The Founder Challenge is the entry point into the G-iHub ecosystem. Teams compete through a series of structured rounds that test their idea, market understanding, and execution ability. Top performers graduate into the Founder Program.",
+    bullets: [
+      "Idea validation workshops and mentorship sessions",
+      "Structured pitch rounds with expert judges",
+      "Access to StartupVerse for team collaboration and tracking",
+      "Winners receive funding and direct entry into the Founder Program",
+    ],
+    callout: (
+      <>
+        All teams build and submit using{" "}
+        <span className="font-medium text-gray-900">StartupVerse</span> — the
+        G-iHub execution platform.
+      </>
+    ),
+  },
+  "Founder Bootcamp": {
+    badge: "Program 02",
+    title: "Founder Bootcamp",
+    subtitle:
+      "A cohort-based accelerator for early-stage founders building real products with real users across Africa.",
+    duration: "12 weeks",
+    cohort: "20-30 startups",
+    format: "Online + in-person",
+    description:
+      "The Founder Program takes validated ideas and accelerates them into market-ready products. Founders receive structured curriculum, dedicated mentorship, and full access to G-iHub's network of investors and partners.",
+    bullets: [
+      "Weekly sessions covering product, growth, finance, and operations",
+      "1-on-1 mentor matching with seasoned African entrepreneurs",
+      "Full StartupVerse suite for execution, tracking, and reporting",
+      "Investor demo day at program conclusion",
+    ],
+    callout:
+      "The entire program is executed on StartupVerse — milestones, mentorship, and reporting all in one place.",
+  },
+  Incubation: {
+    badge: "Program 03",
+    title: "Incubation",
+    subtitle:
+      "Deep support for post-validation startups ready to build fast, hire well, and scale across Africa.",
+    duration: "6-12 months",
+    cohort: "10-15 startups",
+    format: "In-person",
+    description:
+      "G-iHub's incubation program provides physical workspace, operational support, legal resources, and investor readiness coaching to startups that have already validated their product-market fit.",
+    bullets: [
+      "Physical workspace and lab access at G-iHub facilities",
+      "Legal, HR, and finance support infrastructure",
+      "Continued StartupVerse integration for operations and reporting",
+      "Introductions to G-iHub's investor and corporate partner network",
+    ],
+    callout:
+      "Incubated startups use StartupVerse for all operational tracking and investor reporting.",
+  },
+  "Innovation Clinics": {
+    badge: "Program 04",
+    title: "Innovation Clinics",
+    subtitle:
+      "Expert-led workshops that solve specific innovation challenges for founders and researchers at any stage.",
+    duration: "1-3 days",
+    cohort: "All founders",
+    format: "Online + in-person",
+    description:
+      "Innovation Clinics are focused, high-intensity sessions that tackle specific challenges: fundraising, product design, regulatory navigation, health tech compliance, and more. Open to founders inside and outside the G-iHub ecosystem.",
+    bullets: [
+      "Topic-specific clinics run by expert practitioners.",
+      "Small group format for maximum interaction",
+      "Practical outputs and action plans for every participant.",
+      "Access to G-iHub resource library via StartupVerse.",
+    ],
+    callout:
+      "Clinic resources and action plans are delivered through StartupVerse.",
+  },
+  "University Programs": {
+    badge: "Program 05",
+    title: "University Programs",
+    subtitle:
+      "G-iHub partners with universities to bring innovation infrastructure directly to campus — programs, platforms, and verifiable credentials.",
+    duration: "1-3 days",
+    cohort: "All founders",
+    format: "Online + in-person",
+    description:
+      "We partner with African universities to embed G-iHub programs, StartupVerse access, and Certifyer credentialing into campus innovation programs. Students graduate with verified credentials and a head start in the G-iHub ecosystem.",
+    bullets: [
+      "StartupVerse access for all participating students.",
+      "Pathway from campus into the G-iHub Founder Program",
+      "OmicsBoard integration for research-focused universities.",
+      "Joint events, demo days, and innovation challenges.",
+      "Campus Founder Challenges co-run with university innovation centers",
+      "Faculty training on innovation program delivery",
+      "Certifyer integration for student credentialing",
+    ],
+    callout:
+      "Clinic resources and action plans are delivered through StartupVerse.",
+  },
+};
+
+const Program = () => {
+  const [activeTab, setActiveTab] = useState("Founder Execution Challenge");
+
+  const tabs = [
+    "Founder Execution Challenge",
+    "Founder Bootcamp",
+    "Incubation",
+    "Innovation Clinics",
+    "University Programs",
+  ];
+
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      once: true,
+      easing: "ease-out",
+    });
+  }, []);
+
+  const activeContent = PROGRAM_DATA[activeTab];
+
+  return (
+    <div className="bg-[#F6F5EF] min-h-screen pt-16 font-['Inter']">
+      <div className="px-4 md:px-32 pb-16">
+        {/* Header Section */}
+        <div className="text-center mb-16" data-aos="slide-up">
+          <p className="text-[#FF4103] text-xs sm:text-sm font-medium tracking-[0.2em] uppercase mb-1.5">
+            // Our program //
+          </p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#0D1D2C] font-['Fraunces'] leading-tight shadow-none">
+            Five pathways. One ecosystem.
+          </h1>
+        </div>
+
+        {/* Tabs Navigation */}
+        <div
+          className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-12"
+          data-aos="slide-up"
+          data-aos-delay="100"
+        >
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`pb-3 text-[0.95rem] md:text-base font-medium transition-all duration-300 relative ${
+                activeTab === tab
+                  ? "text-[#1A1A1A]"
+                  : "text-gray-500 hover:text-gray-900"
+              }`}
+            >
+              {tab}
+              {activeTab === tab && (
+                <span className="absolute -bottom-px left-0 w-full h-0.5 bg-[#FF4103]"></span>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab Content */}
+        <div
+          data-aos="slide-up"
+          data-aos-delay="200"
+          className="max-w-5xl mx-auto"
+        >
+          {activeContent ? (
+            <div className="bg-[#FFFBF7] rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.03)] p-8 md:p-14 border border-gray-100 animate-fade-in">
+              {/* Program label */}
+              <div className="mb-6">
+                <span className="inline-block bg-[#FFF5F3] text-orange-500 border border-[#FF4103]/20 text-[0.8rem] md:text-sm font-medium px-4 py-1.5 rounded-full">
+                  {activeContent.badge}
+                </span>
+              </div>
+
+              {/* Title & Subtitle */}
+              <div className="mb-4">
+                <h2 className="text-2xl sm:text-3xl md:text-[1.8rem] font-bold text-[#0D1D2C] font-['Fraunces'] mb-4">
+                  {activeContent.title}
+                </h2>
+                <p className="text-gray-600 max-w-2xl leading-relaxed">
+                  {activeContent.subtitle}
+                </p>
+              </div>
+
+              <hr className="border-gray-100 mb-4" />
+
+              {/* Metas */}
+              <div className="flex flex-col gap-2.5 mb-10">
+                <div className="flex items-center gap-3 text-gray-700">
+                  <div className="w-5 flex justify-center">
+                    <Clock className="w-4.5 h-4.5 text-gray-500" />
+                  </div>
+                  <span className="text-[0.95rem]">
+                    <span className="text-gray-500">Duration:</span>{" "}
+                    <span className="font-medium text-gray-800">
+                      {activeContent.duration}
+                    </span>
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <div className="w-5 flex justify-center">
+                    <Users className="w-4.5 h-4.5 text-gray-500" />
+                  </div>
+                  <span className="text-[0.95rem]">
+                    <span className="text-gray-500">Cohort:</span>{" "}
+                    <span className="font-medium text-gray-800">
+                      {activeContent.cohort}
+                    </span>
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-700">
+                  <div className="w-5 flex justify-center">
+                    <Globe className="w-4.5 h-4.5 text-gray-500" />
+                  </div>
+                  <span className="text-[0.95rem]">
+                    <span className="text-gray-500">Format:</span>{" "}
+                    <span className="font-medium text-gray-800">
+                      {activeContent.format}
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-gray-600 mb-8 leading-relaxed text-[0.95rem] md:text-[1rem]">
+                {activeContent.description}
+              </p>
+
+              {/* Bullet points */}
+              <ul className="space-y-4 mb-12">
+                {activeContent.bullets.map((item, i) => (
+                  <li key={i} className="flex items-start gap-4">
+                    <Check
+                      className="w-[1.15rem] h-[1.15rem] text-gray-800 mt-0.5 shrink-0"
+                      strokeWidth={2.5}
+                    />
+                    <span className="text-gray-700 text-[0.95rem]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Callout */}
+              <div className="bg-[#FFF5F3] border border-[#FF4103]/20 rounded-xl p-6 md:p-4 text-center mb-10">
+                <p className="text-gray-700 text-[0.9rem] md:text-sm">
+                  {activeContent.callout}
+                </p>
+              </div>
+
+              {/* Action Button */}
+              <div>
+                <button className="inline-flex items-center gap-3 bg-[#FF4103] hover:bg-[#E03A00] text-white px-7 py-3 rounded-full font-medium transition-colors group text-[0.95rem]">
+                  Apply Now
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center transform group-hover:translate-x-1 transition-transform">
+                    <Send className="w-3 h-3 text-[#FF4103] -ml-0.5 mt-0.5" />
+                  </div>
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-14 text-center animate-fade-in">
+              <p className="text-gray-500 italic">
+                Content for '{activeTab}' coming soon...
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Founder Journey Section */}
+      <div className="px-4 py-16 md:px-32 bg-[#FFFBF7]">
+        <div className="text-center mb-16" data-aos="slide-up">
+          <p className="text-[#FF4103] text-xs sm:text-sm font-medium tracking-[0.2em] uppercase mb-4">
+            // Founder Journey //
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-[#0D1D2C] font-['Fraunces'] leading-tight">
+            How Founders Move Through G-iHub
+          </h2>
+        </div>
+
+        <div className="flex flex-col gap-6">
+          {[
+            {
+              num: "01",
+              title: "Ideation",
+              desc: "Enter via Founder Challenge or Innovation Clinics. Validate your idea with structure and expert support.",
+            },
+            {
+              num: "02",
+              title: "Execution",
+              desc: "Join the Founder Program. Build your product on StartupVerse with mentors, curriculum, and community.",
+            },
+            {
+              num: "03",
+              title: "Incubation",
+              desc: "Graduate into G-iHub's incubation. Get workspace, operational support, and investor introductions.",
+            },
+            {
+              num: "04",
+              title: "Scale",
+              desc: "Access G-iHub's partner network, capital connections, and Pan-African market pathways.",
+            },
+          ].map((step, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-xl p-10 md:p-14 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.02)] border border-gray-100/50"
+              data-aos="slide-up"
+              data-aos-delay={idx * 100}
+            >
+              <div className="text-xl md:text-2xl font-['Fraunces'] text-gray-800 mb-6">
+                {step.num}
+              </div>
+              <div>
+                <h3 className="text-2xl md:text-2xl tracking-tighter font-medium font-['Fraunces'] text-[#1A1A1A] mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-gray-700 text-[0.95rem] md:text-base leading-6 max-w-md md:max-w-md">
+                  {step.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Program;
